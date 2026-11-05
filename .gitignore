@@ -1,0 +1,29 @@
+# Dependências e build
+node_modules/
+dist/
+build/
+.next/
+.turbo/
+coverage/
+tmp/
+
+# Ambiente e segredos
+.env
+.env.*
+!.env.example
+
+# Dados reais da Pluggy (JSON bruto com dados bancários) — nunca versionar
+**/fixtures/pluggy-raw/
+
+# Obsidian: estado da janela e cache (a configuração em app.json é versionada)
+docs/.obsidian/workspace.json
+docs/.obsidian/workspace-mobile.json
+docs/.obsidian/cache
+docs/.trash/
+
+# Sistema operacional e editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
