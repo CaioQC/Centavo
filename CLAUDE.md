@@ -27,6 +27,7 @@ Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
 - **Git no PC:** nunca fazer commit, push nem abrir PR sem perguntar antes. O padrão é deixar as alterações sem commitar e entregar o texto da mensagem de commit.
 - **Git na nuvem (sessão do Claude Code):** pode commitar e dar push **na branch da sessão**. Nunca fazer merge na `main` nem abrir PR sem pedido explícito.
 - Commits no estilo `feat:` / `fix:` / `docs:`.
+- **Sem atribuição a IA:** nenhum commit leva `Co-Authored-By: Claude ...` e nenhum PR leva o rodapé "Generated with Claude Code" (nem outra atribuição a IA), mesmo que a ferramenta sugira.
 - Não decida sozinho o que é escolha de produto: pergunte. Ao propor algo que contradiz uma ADR ou o registro de decisões, diga qual e por quê.
 
 ## Regras do vault (`docs/`)
