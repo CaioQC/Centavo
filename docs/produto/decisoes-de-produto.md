@@ -17,4 +17,4 @@ O porquê de cada decisão está no [registro de decisões](../decisoes/registro
 | Lançamentos manuais | Suportados: contas manuais (dinheiro em espécie, contas fora do Open Finance) e transações sem ID da Pluggy. |
 | Transferências internas | Transferências entre as próprias contas e pagamentos de fatura são **detectados automaticamente** e excluídos de orçamento e relatórios, para o gasto não contar duas vezes. A marcação pode ser corrigida manualmente. Ver [ADR 08](../adr/adr-08-transferencias-internas.md). |
 | Hospedagem (MVP) | Local, com Docker Compose (PostgreSQL + Redis). Um túnel (Cloudflare Tunnel ou ngrok) expõe **apenas** a rota do webhook. O deploy é decidido depois. Ver [ADR 06](../adr/adr-06-seguranca-webhook-e-tunel.md). |
-| Escopo do MVP | **Backend + Web.** O app mobile vem depois. |
+| Escopo | **Backend + Web.** Um app mobile é ideia futura, fora do roadmap. |

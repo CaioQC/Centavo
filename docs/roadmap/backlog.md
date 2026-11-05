@@ -2,6 +2,9 @@
 
 Lista única de tarefas soltas do projeto, fora das fases do [roadmap](roadmap.md). Marque com `[x]` ao concluir e, se a tarefa gerou uma decisão, registre no [registro de decisões](../decisoes/registro.md). Tarefas que dependem de dados reais da Pluggy ficam em [pendências](../pluggy/pendencias.md), não aqui.
 
+## Antes da Fase 0
+- [ ] Revisar a escolha do front (Vite + React + React Router + TanStack Query) com um dev front-end; se mudar algo, atualizar a [stack](../arquitetura/stack.md) e o [registro de decisões](../decisoes/registro.md).
+
 ## Documentação
 - [ ] **Diagramas em Mermaid** (adiado por escolha; abordagem já decidida, ver registro em 2026-11-04):
   - [ ] Arquitetura de contêineres: PC, Docker (Postgres, Redis), API, worker, web, túnel, Pluggy, Meu Pluggy. Também vai para o README.

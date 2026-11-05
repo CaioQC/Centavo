@@ -24,7 +24,7 @@ Sistema de gerenciamento financeiro pessoal integrado à API da **Pluggy (Open F
 | [02](adr/adr-02-idempotencia-e-ciclo-de-vida.md) | Idempotência e ciclo de vida das transações |
 | [03](adr/adr-03-reconciliacao-periodica.md) | Reconciliação periódica como fonte da verdade |
 | [04](adr/adr-04-saldos-da-pluggy.md) | Saldos vêm da Pluggy (com histórico) |
-| [05](adr/adr-05-offline-first-mobile.md) | Offline-first no mobile (pós-MVP) |
+| [05](adr/adr-05-offline-first-mobile.md) | Offline-first no mobile (suspensa: mobile é ideia futura) |
 | [06](adr/adr-06-seguranca-webhook-e-tunel.md) | Segurança do webhook e do túnel |
 | [07](adr/adr-07-categorizacao-em-camadas.md) | Categorização em camadas |
 | [08](adr/adr-08-transferencias-internas.md) | Transferências internas fora dos cálculos |

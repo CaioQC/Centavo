@@ -4,7 +4,7 @@ Gerenciador financeiro pessoal integrado à [Pluggy](https://pluggy.ai) (Open Fi
 
 **Status:** em planejamento. Nenhum código ainda.
 
-**Stack planejada:** monorepo pnpm + Turborepo · AdonisJS 7 (API) · Next.js (web) · PostgreSQL · Redis + BullMQ · Expo (mobile, depois).
+**Stack planejada:** monorepo pnpm + Turborepo · AdonisJS 7 (API) · Vite + React + React Router (web) · PostgreSQL · Redis + BullMQ.
 
 ## Documentação
 A especificação completa é um vault do [Obsidian](https://obsidian.md) em [`docs/`](docs/inicio.md). Para navegar com links e grafo, abra a pasta `docs/` como vault no Obsidian; pelo GitHub, comece por [docs/inicio.md](docs/inicio.md).

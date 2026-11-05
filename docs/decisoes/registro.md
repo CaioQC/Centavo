@@ -4,6 +4,16 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-04: Web com Vite + React Router no lugar do Next.js; mobile vira ideia futura
+- **Decisão:** o `web` é um SPA com **Vite + React + React Router (modo SPA) + TanStack Query**, falando com a API pelo Tuyau. O AdonisJS serve o build estático na mesma origem; em desenvolvimento, o proxy do Vite encaminha `/api/*`. O app mobile sai do roadmap e do monorepo e fica como **ideia futura**; a [ADR 05](../adr/adr-05-offline-first-mobile.md) foi suspensa.
+- **Motivo:**
+  - O Centavo é um painel atrás de login, para um usuário, na rede local: não usa renderização no servidor nem SEO, que são o ponto forte do Next. Sem o servidor do Next, some o *rewrite* que existia só para o cookie de sessão funcionar.
+  - Vite compartilha o ecossistema do Vitest, já escolhido para os testes.
+  - React Router em vez de TanStack Router por ser o roteador mais comum no mercado (a tipagem das rotas do TanStack Router era a vantagem dele).
+  - O Caio não planeja atuar com mobile; o app era um extra. Foco no web.
+- **Revisão pendente:** a escolha do front será revista com um dev front-end do trabalho do Caio antes da Fase 0 ([backlog](../roadmap/backlog.md)).
+- **Alternativas descartadas:** Next.js (padrão de mercado, mas traz um servidor sem uso aqui); Inertia + React pelo *starter kit* do AdonisJS 7 (acopla o front ao Adonis); TanStack Start e React Router em modo framework (trazem de volta um servidor de renderização); Vue ou Svelte (sem motivo para sair de React).
+
 ### 2026-11-04: Abordagem de documentação e diagramas (diferente do Garago)
 - **Decisão:** sem documento de requisitos formais, sem casos de uso e sem diagrama de classes feito à mão. Histórias de usuário com **critérios de aceite**, escritas no início de cada fase (`roadmap/fase-N.md`). Diagramas em **Mermaid** dentro das notas, só onde valem: um de arquitetura de contêineres, ER por domínio e sequência dos fluxos difíceis (reconciliação, troca de anotações, renovação/reconexão). Os diagramas foram **adiados** por escolha do Caio; estão no [backlog](../roadmap/backlog.md).
 - **Motivo:** a documentação do Garago era acadêmica (equipe, avaliação) e envelheceu (previa Abacate Pay, o time implementou Stripe). O Centavo tem um único usuário, que também é o dono do produto: casos de uso não informam nada, requisitos formais duplicariam as decisões de produto e as ADRs, e diagrama de classes à mão perde para o código. Mermaid é texto: renderiza no Obsidian e no GitHub, tem diff no git e o Claude consegue editar; imagem exportada (draw.io, Astah) só o autor atualiza. A parte de transações do modelo depende das [pendências](../pluggy/pendencias.md), então não vale detalhar antes da Fase 2.
