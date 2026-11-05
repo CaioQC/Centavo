@@ -48,4 +48,5 @@ Sistema de gerenciamento financeiro pessoal integrado à API da **Pluggy (Open F
 
 ## Planejamento
 - [Roadmap](roadmap/roadmap.md)
+- [Backlog (tarefas soltas)](roadmap/backlog.md)
 - [Registro de decisões](decisoes/registro.md)

@@ -4,6 +4,17 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-04: Abordagem de documentação e diagramas (diferente do Garago)
+- **Decisão:** sem documento de requisitos formais, sem casos de uso e sem diagrama de classes feito à mão. Histórias de usuário com **critérios de aceite**, escritas no início de cada fase (`roadmap/fase-N.md`). Diagramas em **Mermaid** dentro das notas, só onde valem: um de arquitetura de contêineres, ER por domínio e sequência dos fluxos difíceis (reconciliação, troca de anotações, renovação/reconexão). Os diagramas foram **adiados** por escolha do Caio; estão no [backlog](../roadmap/backlog.md).
+- **Motivo:** a documentação do Garago era acadêmica (equipe, avaliação) e envelheceu (previa Abacate Pay, o time implementou Stripe). O Centavo tem um único usuário, que também é o dono do produto: casos de uso não informam nada, requisitos formais duplicariam as decisões de produto e as ADRs, e diagrama de classes à mão perde para o código. Mermaid é texto: renderiza no Obsidian e no GitHub, tem diff no git e o Claude consegue editar; imagem exportada (draw.io, Astah) só o autor atualiza. A parte de transações do modelo depende das [pendências](../pluggy/pendencias.md), então não vale detalhar antes da Fase 2.
+- **Regra:** diagrama é atualizado no mesmo commit da migration ou do fluxo que ele descreve; uma fase só termina quando notas e diagramas batem com o código.
+- **Alternativas descartadas:** repetir o pacote do Garago (histórias, requisitos, arquitetura e todos os diagramas antes do código); não documentar nada até o código existir.
+
+### 2026-11-04: Lista de tarefas no vault, não no Trello
+- **Decisão:** tarefas soltas ficam em [roadmap/backlog.md](../roadmap/backlog.md), com checkboxes.
+- **Motivo:** as sessões do Claude na nuvem só enxergam o repositório; um quadro no Trello seria uma segunda fonte de "o que falta", invisível para elas e divergente do roadmap.
+- **Alternativas descartadas:** Trello (kanban visual, mas fora do repositório). Se o projeto ganhar mais pessoas, a próxima opção são as Issues do GitHub.
+
 ### 2026-11-04: Documentação vira um vault do Obsidian dentro do repositório
 - **Decisão:** a spec única (`plan_de_arquitetura_financeiro.md`) foi dividida em notas pequenas neste vault (`docs/`), versionado no repositório `centavo`.
 - **Motivo:** o trabalho vai alternar entre PC e sessões do Claude Code na nuvem (pelo celular). Sessões novas não enxergam conversas anteriores; o contexto precisa morar no repositório. Notas pequenas deixam cada sessão ler só o necessário. Ideia inspirada no vault do Tech Lead no trabalho.

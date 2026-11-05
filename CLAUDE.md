@@ -19,7 +19,7 @@ Toda a especificação está no vault do Obsidian em `docs/`. Comece por [docs/i
 | Fluxos (conexão, reconciliação, pipeline, fatura, orçamento) | `docs/fluxos/` |
 | O que a Pluggy faz de verdade | `docs/pluggy/fatos-verificados.md` |
 | O que ainda falta confirmar | `docs/pluggy/pendencias.md` |
-| Próximos passos | `docs/roadmap/roadmap.md` |
+| Próximos passos | `docs/roadmap/roadmap.md` (fases) e `docs/roadmap/backlog.md` (tarefas soltas) |
 
 Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
 
@@ -37,7 +37,10 @@ Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
 - Uma ideia por nota; não duplique conteúdo entre notas, linke.
 - **Toda decisão nova** entra no topo de `docs/decisoes/registro.md` (data, decisão, motivo, alternativas descartadas) e é aplicada na nota afetada. ADR nova usa `docs/templates/adr.md` e entra na tabela de `docs/inicio.md`.
 - Fato novo sobre a Pluggy vai em `docs/pluggy/fatos-verificados.md`, com a fonte.
-- Nunca ponha dados bancários reais no repositório.
+- Tarefa solta vai em `docs/roadmap/backlog.md` (não use ferramenta externa de tarefas). Diagramas são em Mermaid dentro das notas, nunca imagem exportada.
+- Nunca ponha dados bancários reais no repositório. O repositório é **público** (portfólio).
+- Plugin da comunidade do Obsidian que guarde chave de API: `docs/.obsidian/plugins/` entra no `.gitignore` **antes** de qualquer commit.
+- O backlog é só de tarefas do projeto; arrumação pessoal do repositório não entra no vault.
 
 ## Regras de código (quando houver código)
 1. **Strict TypeScript:** todo o código fortemente tipado. Evite `any`.
