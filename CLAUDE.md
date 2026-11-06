@@ -19,7 +19,8 @@ Toda a especificação está no vault do Obsidian em `docs/`. Comece por [docs/i
 | Fluxos (conexão, reconciliação, pipeline, fatura, orçamento) | `docs/fluxos/` |
 | O que a Pluggy faz de verdade | `docs/pluggy/fatos-verificados.md` |
 | O que ainda falta confirmar | `docs/pluggy/pendencias.md` |
-| Próximos passos | `docs/roadmap/roadmap.md` (fases) e `docs/roadmap/backlog.md` (tarefas soltas) |
+| Próximos passos | `docs/roadmap/roadmap.md` (fases) e as Issues do GitHub (tarefas; `docs/roadmap/backlog.md` até a migração) |
+| Nomes de branch, commits e PRs | `docs/arquitetura/convencoes-de-git.md` |
 
 Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
 
@@ -28,7 +29,7 @@ Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
 - **Branches:** `develop` (padrão) → `homolog` → `main`, sempre por PR; trabalho sai da `develop` e volta para ela. Bug na produção é hotfix a partir da `main`, e logo depois a `main` volta para a `develop` por merge (nunca reset nem squash). Detalhes em `docs/arquitetura/ambientes-e-branches.md`.
 - **Git na nuvem (sessão do Claude Code):** pode commitar e dar push **na branch da sessão**. Nunca fazer merge em `develop`, `homolog` ou `main` nem abrir PR sem pedido explícito; PR de trabalho vai para a `develop`.
 - **Autoria na nuvem:** a sessão começa com o git configurado como Claude. Antes do primeiro commit, rode `git config user.name "CaioQC"` e `git config user.email "caioq2004@gmail.com"`, para que o commit saia com a autoria do Caio.
-- Commits no estilo `feat:` / `fix:` / `docs:`.
+- Commits e títulos de PR em Conventional Commits com escopo (`feat(api): ...`); branches `tipo/N-descricao` com o número da Issue. Detalhes em `docs/arquitetura/convencoes-de-git.md`.
 - **Sem atribuição a IA:** nenhum commit leva `Co-Authored-By: Claude ...` e nenhum PR leva o rodapé "Generated with Claude Code" (nem outra atribuição a IA), mesmo que a ferramenta sugira.
 - Não decida sozinho o que é escolha de produto: pergunte. Ao propor algo que contradiz uma ADR ou o registro de decisões, diga qual e por quê.
 
@@ -39,7 +40,7 @@ Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
 - Uma ideia por nota; não duplique conteúdo entre notas, linke.
 - **Toda decisão nova** entra no topo de `docs/decisoes/registro.md` (data, decisão, motivo, alternativas descartadas) e é aplicada na nota afetada. ADR nova usa `docs/templates/adr.md` e entra na tabela de `docs/inicio.md`.
 - Fato novo sobre a Pluggy vai em `docs/pluggy/fatos-verificados.md`, com a fonte.
-- Tarefa solta vai em `docs/roadmap/backlog.md` (não use ferramenta externa de tarefas). Diagramas são em Mermaid dentro das notas, nunca imagem exportada.
+- Tarefa nova vira Issue do GitHub (não use outra ferramenta de tarefas); o `docs/roadmap/backlog.md` vale só até a migração. Diagramas são em Mermaid dentro das notas, nunca imagem exportada.
 - Nunca ponha dados bancários reais no repositório. O repositório é **público** (portfólio).
 - Plugin da comunidade do Obsidian que guarde chave de API: `docs/.obsidian/plugins/` entra no `.gitignore` **antes** de qualquer commit.
 - O backlog é só de tarefas do projeto; arrumação pessoal do repositório não entra no vault.

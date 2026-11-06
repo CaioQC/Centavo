@@ -1,5 +1,7 @@
 # Backlog
 
+> **Em migração:** as tarefas passam a ser Issues do GitHub ([convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md)). Até os itens abaixo virarem Issues, esta lista segue valendo.
+
 Lista única de tarefas soltas do projeto, fora das fases do [roadmap](roadmap.md). Marque com `[x]` ao concluir e, se a tarefa gerou uma decisão, registre no [registro de decisões](../decisoes/registro.md). Tarefas que dependem de dados reais da Pluggy ficam em [pendências](../pluggy/pendencias.md), não aqui.
 
 ## Antes da Fase 0

@@ -4,6 +4,19 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-06: Tarefas nas Issues do GitHub; convenções de branch e commit
+- **Decisão:** as tarefas do projeto passam a ser **Issues do GitHub**, e o número da Issue entra no nome da branch. Branches no formato `tipo/N-descricao-curta` (tipos `feat`, `fix`, `hotfix`, `docs`, `refactor`, `test`, `chore`, `ci`). Commits e títulos de PR em Conventional Commits com escopo da parte do monorepo (`feat(api): ...`). Detalhes em [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md).
+- **Motivo:**
+  - O Caio quer o número da tarefa no nome da branch. Numerar à mão no `backlog.md` geraria números repetidos quando o PC e uma sessão na nuvem criassem tarefas ao mesmo tempo; a Issue dá número automático e é fechada sozinha pelo PR (`Closes #N`).
+  - O motivo da decisão de 2026-11-04 (as sessões na nuvem só enxergam o repositório) deixou de valer: elas leem e escrevem Issues pelo GitHub. A própria decisão já apontava as Issues como a próxima opção.
+  - Com squash na `develop`, o título do PR vira o commit e a linha das notas da release; por isso o padrão vale principalmente para ele.
+  - `hotfix/` separado de `fix/` mostra pelo nome qual branch saiu da `main` e precisa voltar para a `develop`.
+- **Revisão pendente:** o Caio vai rever estas convenções e o uso das Issues.
+- **Pendente:** migrar os itens do [backlog](../roadmap/backlog.md) para Issues; até lá, ele segue valendo.
+- **Substitui:** "Lista de tarefas no vault, não no Trello" (2026-11-04).
+- **Alternativas descartadas:** numerar as tarefas à mão no backlog (números repetidos); branch sem número da tarefa.
+- **Afeta:** [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md), [backlog](../roadmap/backlog.md), `CLAUDE.md`
+
 ### 2026-11-06: Backup com retenção e cópia criptografada
 - **Decisão:** além do `pg_dump` diário, um backup logo antes de cada atualização da produção. Retenção: 7 diários, 4 semanais, 12 mensais e os 3 feitos antes de release. A cópia que sai do PC é criptografada antes (`age` ou `gpg`), com a chave num gerenciador de senhas. Detalhes em [backup](../arquitetura/backup.md).
 - **Motivo:**

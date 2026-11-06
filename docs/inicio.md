@@ -17,6 +17,7 @@ Sistema de gerenciamento financeiro pessoal integrado à API da **Pluggy (Open F
 - [Segurança e operação](arquitetura/seguranca-e-operacao.md)
 - [Ambientes, branches e releases](arquitetura/ambientes-e-branches.md)
 - [Backup](arquitetura/backup.md)
+- [Convenções de branch, commit e PR](arquitetura/convencoes-de-git.md)
 - [Estratégia de testes](arquitetura/testes.md)
 - [IA local (Ollama)](arquitetura/ia-local.md)
 
@@ -52,5 +53,5 @@ Sistema de gerenciamento financeiro pessoal integrado à API da **Pluggy (Open F
 
 ## Planejamento
 - [Roadmap](roadmap/roadmap.md)
-- [Backlog (tarefas soltas)](roadmap/backlog.md)
+- [Backlog (tarefas soltas; migrando para as Issues do GitHub)](roadmap/backlog.md)
 - [Registro de decisões](decisoes/registro.md)
