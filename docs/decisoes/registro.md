@@ -4,6 +4,28 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-06: Backup com retenção e cópia criptografada
+- **Decisão:** além do `pg_dump` diário, um backup logo antes de cada atualização da produção. Retenção: 7 diários, 4 semanais, 12 mensais e os 3 feitos antes de release. A cópia que sai do PC é criptografada antes (`age` ou `gpg`), com a chave num gerenciador de senhas. Detalhes em [backup](../arquitetura/backup.md).
+- **Motivo:**
+  - O banco de um usuário só é pequeno (estimativa: dezenas de MB em 10 anos, poucos MB por backup compactado); o que cresce é guardar todas as cópias para sempre, e a retenção resolve isso com umas 25 cópias.
+  - A cópia fora da máquina tem todo o histórico bancário: o risco real é privacidade, não espaço.
+  - Voltar para a release anterior não desfaz uma migration; o backup antes da atualização sim.
+- **Revisão pendente:** o Caio aceitou as sugestões para revisar depois; os números da retenção podem mudar.
+- **Alternativas descartadas:** guardar todos os backups (cresce sem limite); cópia fora da máquina sem criptografia.
+- **Afeta:** [backup](../arquitetura/backup.md), [segurança e operação](../arquitetura/seguranca-e-operacao.md), [roadmap](../roadmap/roadmap.md)
+
+### 2026-11-06: Releases a cada chegada à main
+- **Decisão:** cada promoção da `homolog` para a `main` e cada hotfix geram uma release do GitHub, criada no commit da `main` depois do merge. SemVer: `0.x.y` até o fim do MVP (Fase 6), `1.0.0` nele; promoção sobe o número do meio e hotfix o último. Notas geradas pelo GitHub e revisadas, sem `CHANGELOG.md`. A produção roda a tag da release, com backup logo antes de atualizar. Detalhes em [ambientes, branches e releases](../arquitetura/ambientes-e-branches.md).
+- **Motivo:**
+  - A ideia do Caio era gerar a release ao fim do teste final na homologação; ela nasce na `main` porque é o commit da `main` que roda na produção.
+  - Uma release por promoção, e não por fase: uma fase pode ter várias etapas promovidas. A fase aparece nas notas.
+  - Rodar a tag deixa claro qual versão está na produção e torna a volta simples (tag anterior + backup).
+  - Os PRs de feature já entram com squash e título `feat:` / `fix:`, então as notas automáticas saem organizadas.
+- **Revisão pendente:** o Caio aceitou as sugestões para revisar depois.
+- **Substitui:** a tag "uma por fase do roadmap" da entrada sobre branches (abaixo).
+- **Alternativas descartadas:** release no commit da `homolog` (não é o que roda na produção); uma release por fase; `CHANGELOG.md` (duplica as releases); automação com release-please já de início (fica para quando a CI existir).
+- **Afeta:** [ambientes, branches e releases](../arquitetura/ambientes-e-branches.md), [backup](../arquitetura/backup.md)
+
 ### 2026-11-06: Hotfix na main e volta da main para a develop
 - **Decisão:** bug achado na produção é corrigido por hotfix: branch a partir da `main`, PR para a `main` e tag de correção. **Logo depois de cada hotfix**, e também depois de cada promoção conferida para a `main`, a `main` volta para a `develop` por PR com **merge comum**. Bug achado no desenvolvimento ou na homologação continua sendo corrigido na `develop`. Detalhes em [ambientes e branches](../arquitetura/ambientes-e-branches.md).
 - **Motivo:** mesmo depois da homologação, bugs chegam à `main`; corrigi-los pela `develop` faria a correção esperar a etapa inteira. Voltar a `main` para a `develop` deixa as branches iguais e evita conflitos.
