@@ -56,3 +56,4 @@ Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
 10. **Projeções são calculadas,** nunca gravadas como transações.
 11. **Erros:** endpoints HTTP tratam exceções e retornam respostas padronizadas em JSON.
 12. **Estilo AdonisJS 7:** Lucid ORM, VineJS para validação, injeção de dependência.
+13. **IA só local e só sugere:** Ollama só em `apps/api`, em job assíncrono; dado bancário nunca vai para IA na nuvem; a IA nunca grava categoria sem aceite, nunca faz conta e nunca gera chave. Ver `docs/arquitetura/ia-local.md`.

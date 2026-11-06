@@ -16,6 +16,7 @@ Sistema de gerenciamento financeiro pessoal integrado à API da **Pluggy (Open F
 - [Stack tecnológica](arquitetura/stack.md)
 - [Segurança e operação](arquitetura/seguranca-e-operacao.md)
 - [Estratégia de testes](arquitetura/testes.md)
+- [IA local (Ollama)](arquitetura/ia-local.md)
 
 ## ADRs (decisões de arquitetura)
 | ADR | Assunto |

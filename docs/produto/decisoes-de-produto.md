@@ -10,6 +10,7 @@ O porquê de cada decisão está no [registro de decisões](../decisoes/registro
 | Renovação anual | A autorização do Meu Pluggy para a aplicação **dura um ano** (`consentExpiresAt` no item). Renovar exige refazer o fluxo de conexão, que pode gerar **Item ID novo**. O Centavo avisa com antecedência e religa contas e transações ao novo item sem duplicar (ver "Expiração, renovação e reconexão" em [conexão de banco](../fluxos/conexao-meu-pluggy.md)). |
 | Login | E-mail + senha + **2FA TOTP** (Google Authenticator etc.) com códigos de recuperação. |
 | Categorias | A categoria enviada pela Pluggy é mapeada para uma lista própria e enxuta. O usuário pode recategorizar manualmente e criar regras (ex.: descrição contém `IFOOD` → Alimentação). Ver [ADR 07](../adr/adr-07-categorizacao-em-camadas.md). |
+| IA | **Só local** (Ollama). Sugere categoria e regra, responde perguntas sobre os gastos e resume o mês; sugestão só vale quando o usuário aceita. Ver [IA local](../arquitetura/ia-local.md). |
 | Orçamento | Definido **por mês** e ajustável. Ao abrir um mês novo, os limites do mês anterior são copiados. |
 | Cartão no orçamento | **Mês da compra, parcelado.** Compra à vista conta no mês da compra; numa compra em N vezes, a parcela *k* conta no mês da compra + (*k* − 1). Estornos abatem o gasto da categoria. Ver [ADR 11](../adr/adr-11-orcamento-cartao-parcelado.md). |
 | Metas | Cada meta pode ser **vinculada a uma conta ou a um investimento** (o saldo é o progresso) **ou** receber **aportes manuais**. |
