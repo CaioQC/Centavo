@@ -1,6 +1,6 @@
 # IA local (Ollama)
 
-Uma IA rodando no próprio PC (Ollama + modelo Qwen) sugere categorias e regras, responde perguntas sobre os gastos e resume o mês. Entra na [Fase 3](../roadmap/roadmap.md). O porquê está no [registro de decisões](../decisoes/registro.md).
+Uma IA rodando no próprio PC (Ollama + modelo Qwen) sugere categorias e regras, responde perguntas sobre os gastos e resume o mês. Entra na [Fase 3](../roadmap/roadmap.md); o resumo do mês, na Fase 4, junto com o orçamento. O porquê está no [registro de decisões](../decisoes/registro.md).
 
 ## Regras
 - **Só local:** dado bancário real nunca vai para IA na nuvem, nem como alternativa quando o Ollama estiver fora do ar.
@@ -14,7 +14,7 @@ Uma IA rodando no próprio PC (Ollama + modelo Qwen) sugere categorias e regras,
 1. **Sugestão de categoria** para transações que ficaram "Sem categoria" no [pipeline](../fluxos/pipeline-de-transacao.md). O modelo recebe descrição, valor, conta, a lista de categorias e exemplos já categorizados à mão, e responde em JSON estruturado. Resposta fora da lista de categorias é descartada.
 2. **Sugestão de regra:** depois de várias recategorizações manuais parecidas, propõe uma regra (ex.: descrição contém `UBER *TRIP` → Transporte). Se o usuário aceita, vira uma regra comum, determinística.
 3. **Perguntas em linguagem natural** ("quanto gastei com delivery em outubro?"): *tool calling* sobre consultas prontas da API, nunca SQL livre. Assim as regras de negócio valem também aqui, como transferências internas fora da conta ([ADR 08](../adr/adr-08-transferencias-internas.md)).
-4. **Resumo do mês** em texto, narrando números já calculados.
+4. **Resumo do mês** em texto, narrando números já calculados: gastos por categoria e situação do [orçamento](../fluxos/orcamento-do-mes.md). Fica para a Fase 4.
 
 ## Modelo e hardware
 - PC com **RX 9060 XT 16 GB**. Começar por um modelo de 8–9B (ex.: Qwen 3.5 9B), que cabe com folga; os de ~27B em Q4 ficam no limite dos 16 GB.

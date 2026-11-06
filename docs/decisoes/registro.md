@@ -4,16 +4,17 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
-### 2026-11-06: IA local (Ollama) na Fase 3, só como sugestão
-- **Decisão:** o Centavo usa uma IA **só local** (Ollama + Qwen no PC) para quatro coisas: sugerir categoria, sugerir regra, responder perguntas sobre os gastos e resumir o mês. A sugestão de categoria vai para a lista "revisar" e só vale quando o usuário aceita; a [ADR 07](../adr/adr-07-categorizacao-em-camadas.md) não ganha camada nova. Entra na Fase 3. Regras em [IA local](../arquitetura/ia-local.md).
+### 2026-11-06: IA local (Ollama) a partir da Fase 3, só como sugestão
+- **Decisão:** o Centavo usa uma IA **só local** (Ollama + Qwen no PC) para quatro coisas: sugerir categoria, sugerir regra, responder perguntas sobre os gastos e resumir o mês. A sugestão de categoria vai para a lista "revisar" e só vale quando o usuário aceita; a [ADR 07](../adr/adr-07-categorizacao-em-camadas.md) não ganha camada nova. Entra na Fase 3; o resumo do mês entra na Fase 4. Aceitar uma sugestão grava a categoria como `MANUAL`. Regras em [IA local](../arquitetura/ia-local.md).
 - **Motivo:**
   - Dado bancário real não deve sair do PC; com o Ollama, nada vai para a nuvem.
   - A categoria da Pluggy pode vir vazia ([ADR 07](../adr/adr-07-categorizacao-em-camadas.md)); a IA cobre justamente essa lacuna.
   - O hardware já existe (RX 9060 XT 16 GB). A ideia veio do projeto parecido de um amigo, com Ollama e Qwen.
   - Modelo erra e responde diferente a cada execução: começar sugerindo, medir a taxa de acerto e só então pensar em automatizar.
-  - A Fase 3 é onde nascem extrato, categorias, regras e a lista "revisar", que a IA usa.
+  - A Fase 3 é onde nascem extrato, categorias, regras e a lista "revisar", que a IA usa. O resumo do mês só faz sentido com o orçamento, que nasce na Fase 4.
+  - A categoria aceita fica protegida como qualquer escolha do usuário.
 - **Observação:** o resumo do mês narra números já calculados; não é o módulo de relatórios, que segue fora do MVP.
-- **Alternativas descartadas:** camada `AI` que aplica a categoria sozinha (reavaliar com a taxa de acerto medida); IA na nuvem, inclusive como alternativa quando o Ollama estiver fora do ar (dados bancários sairiam do PC); nome legível do estabelecimento (pouco valor por ora); fase própria depois do MVP.
+- **Alternativas descartadas:** origem própria para a categoria aceita (ex.: `AI_ACCEPTED`), que ajudaria a medir o acerto, mas não foi preferida; resumo do mês na Fase 3 (só teria os gastos, sem o orçamento); camada `AI` que aplica a categoria sozinha (reavaliar com a taxa de acerto medida); IA na nuvem, inclusive como alternativa quando o Ollama estiver fora do ar (dados bancários sairiam do PC); nome legível do estabelecimento (pouco valor por ora); fase própria depois do MVP.
 - **Afeta:** [IA local](../arquitetura/ia-local.md), [ADR 07](../adr/adr-07-categorizacao-em-camadas.md), [roadmap](../roadmap/roadmap.md), [stack](../arquitetura/stack.md), [decisões de produto](../produto/decisoes-de-produto.md)
 
 ### 2026-11-04: Web com Vite + React Router no lugar do Next.js; mobile vira ideia futura
