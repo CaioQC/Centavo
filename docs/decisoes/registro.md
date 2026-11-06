@@ -4,6 +4,18 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-06: Branches develop, homolog e main, com homologação numa segunda instância
+- **Decisão:** três branches fixas. O trabalho sai da `develop` (branch padrão) e volta por PR com squash; cada etapa sobe `develop` → `homolog` → `main` por PR com merge comum, e cada chegada à `main` ganha uma tag de versão. `homolog` e `main` só recebem PR. A homologação é uma **segunda instância no PC**, com o banco restaurado do último backup da produção. Detalhes em [ambientes e branches](../arquitetura/ambientes-e-branches.md).
+- **Motivo:**
+  - Treinar o fluxo usado em empresa e mostrar um processo organizado no portfólio.
+  - O banco do Centavo é o único arquivo do passado: versão nova (migration, reconciliação) é testada numa cópia, não no banco do dia a dia.
+  - Restaurar o backup a cada promoção prova que ele funciona ("restauração testada" em [segurança e operação](../arquitetura/seguranca-e-operacao.md)).
+  - Squash só nas features: nas promoções ele faria as branches divergirem.
+  - `develop` como padrão faz as sessões na nuvem partirem dela.
+- **Custo aceito:** três PRs por entrega até a `main`, num projeto de uma pessoa.
+- **Alternativas descartadas:** só `main` e branches de trabalho (menos atrito, mas sem etapa de teste com dados reais); `homolog` só como branch, sem ambiente (seria só um nome); testar direto no banco de produção (risco ao único arquivo do passado); squash também nas promoções.
+- **Afeta:** [ambientes e branches](../arquitetura/ambientes-e-branches.md), [segurança e operação](../arquitetura/seguranca-e-operacao.md), [roadmap](../roadmap/roadmap.md), `CLAUDE.md`
+
 ### 2026-11-06: Apoio à declaração do Imposto de Renda na Fase 7
 - **Decisão:** a Fase 7 (pós-MVP) ganha um [apoio à declaração do IRPF](../fluxos/imposto-de-renda.md), em três partes por prioridade: saldos em 31/12 de contas e investimentos; despesas dedutíveis do ano; e, com menor prioridade, um checklist anual de informes. O Centavo confere e organiza; não calcula imposto nem restituição.
 - **Motivo:**

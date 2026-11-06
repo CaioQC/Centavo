@@ -2,7 +2,7 @@
 
 | Fase | Status | Entrega |
 |---|---|---|
-| 0. Fundação | ⬜ Não iniciada | Monorepo (pnpm, Turborepo, tsconfig, eslint), `docker-compose` (PostgreSQL + Redis), app AdonisJS 7 e web (Vite + React + React Router + TanStack Query), Japa e Vitest configurados, CI, script de backup. Ver [monorepo](../arquitetura/monorepo.md). |
+| 0. Fundação | ⬜ Não iniciada | Monorepo (pnpm, Turborepo, tsconfig, eslint), `docker-compose` (PostgreSQL + Redis), app AdonisJS 7 e web (Vite + React + React Router + TanStack Query), Japa e Vitest configurados, CI, script de backup, instância de homologação com restauração do backup ([ambientes e branches](../arquitetura/ambientes-e-branches.md)). Ver [monorepo](../arquitetura/monorepo.md). |
 | 1. Autenticação | ⬜ Não iniciada | Comando para criar o usuário, login, ativação de TOTP, códigos de recuperação, rate limiting. |
 | 2. Sincronização Pluggy | ⬜ Não iniciada | **Primeiro:** script que baixa o JSON bruto dos seus itens e resolve as [pendências](../pluggy/pendencias.md). Depois: cadastro de Item ID, reconciliação agendada e manual, renovação/reconexão de item, webhook seguro, upsert e soft delete, impressão digital e transferência de anotações, contas, investimentos e snapshots de saldo, `sync_runs` e painel de filas. |
 | 3. Extrato e Categorias | ⬜ Não iniciada | Listagem e filtros, mapeamento Pluggy → categorias, recategorização, regras, detecção de transferências internas, contas e lançamentos manuais, lista "revisar". [IA local](../arquitetura/ia-local.md): sugestão de categoria e de regra, perguntas sobre os gastos. |
