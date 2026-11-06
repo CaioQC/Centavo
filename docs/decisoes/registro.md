@@ -4,6 +4,15 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-06: Apoio à declaração do Imposto de Renda na Fase 7
+- **Decisão:** a Fase 7 (pós-MVP) ganha um [apoio à declaração do IRPF](../fluxos/imposto-de-renda.md), em três partes por prioridade: saldos em 31/12 de contas e investimentos; despesas dedutíveis do ano; e, com menor prioridade, um checklist anual de informes. O Centavo confere e organiza; não calcula imposto nem restituição.
+- **Motivo:**
+  - Conselho de um colega de trabalho: declarar mesmo sem ser obrigado, para pegar prática e recuperar imposto retido no salário.
+  - O cálculo depende do informe do empregador (bruto, IR retido), que o Centavo não vê. A pré-preenchida da Receita já traz o informe, as despesas de saúde e os saldos, mas costuma falhar nos saldos; conferir é onde o Centavo agrega.
+  - Relatórios ficaram fora do MVP (2026-11-02), por isso a Fase 7. Saldos e categorias já são gravados desde as fases 2 e 3, então nada precisa ser antecipado.
+- **Alternativas descartadas:** ideia futura fora do roadmap, como o app mobile; calcular imposto ou restituição (faltam os dados do empregador e duplicaria o programa da Receita).
+- **Afeta:** [apoio ao IR](../fluxos/imposto-de-renda.md), [roadmap](../roadmap/roadmap.md), [decisões de produto](../produto/decisoes-de-produto.md), [pendências](../pluggy/pendencias.md)
+
 ### 2026-11-06: IA local (Ollama) a partir da Fase 3, só como sugestão
 - **Decisão:** o Centavo usa uma IA **só local** (Ollama + Qwen no PC) para quatro coisas: sugerir categoria, sugerir regra, responder perguntas sobre os gastos e resumir o mês. A sugestão de categoria vai para a lista "revisar" e só vale quando o usuário aceita; a [ADR 07](../adr/adr-07-categorizacao-em-camadas.md) não ganha camada nova. Entra na Fase 3; o resumo do mês entra na Fase 4. Aceitar uma sugestão grava a categoria como `MANUAL`. Regras em [IA local](../arquitetura/ia-local.md).
 - **Motivo:**

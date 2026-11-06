@@ -42,6 +42,7 @@ Sistema de gerenciamento financeiro pessoal integrado à API da **Pluggy (Open F
 - [Pipeline de uma transação](fluxos/pipeline-de-transacao.md)
 - [Projeção de fatura](fluxos/projecao-de-fatura.md)
 - [Orçamento do mês](fluxos/orcamento-do-mes.md)
+- [Apoio à declaração do Imposto de Renda](fluxos/imposto-de-renda.md)
 
 ## Pluggy
 - [Fatos verificados na documentação](pluggy/fatos-verificados.md)

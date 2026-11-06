@@ -9,6 +9,6 @@
 | 4. Orçamento | ⬜ Não iniciada | Limites por categoria e mês, cópia do mês anterior, regra do cartão parcelado, "já comprometido". Ver [orçamento do mês](../fluxos/orcamento-do-mes.md). Resumo do mês pela [IA local](../arquitetura/ia-local.md). |
 | 5. Cartão | ⬜ Não iniciada | Faturas, agrupamento de parcelas, projeção de faturas, assinaturas sugeridas e confirmadas. Ver [projeção de fatura](../fluxos/projecao-de-fatura.md). |
 | 6. Metas | ⬜ Não iniciada | Metas vinculadas a conta ou investimento e metas com aportes manuais. |
-| 7. Pós-MVP | ⬜ Não iniciada | Widget Pluggy Connect, deploy. (App mobile é ideia futura, fora do roadmap.) |
+| 7. Pós-MVP | ⬜ Não iniciada | Widget Pluggy Connect, deploy, [apoio ao Imposto de Renda](../fluxos/imposto-de-renda.md). (App mobile é ideia futura, fora do roadmap.) |
 
 Status: ⬜ não iniciada · 🟨 em andamento · ✅ concluída. Ao mudar o status de uma fase, registre a data no [registro de decisões](../decisoes/registro.md) se algo do plano tiver mudado.
