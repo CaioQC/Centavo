@@ -13,6 +13,7 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
   - Squash só nas features: nas promoções ele faria as branches divergirem.
   - `develop` como padrão faz as sessões na nuvem partirem dela.
 - **Custo aceito:** três PRs por entrega até a `main`, num projeto de uma pessoa.
+- **Início:** vale a partir do PR seguinte ao #1. O PR #1, aberto antes da decisão, vai direto para a `main`, e as branches `develop` e `homolog` são criadas depois dele.
 - **Alternativas descartadas:** só `main` e branches de trabalho (menos atrito, mas sem etapa de teste com dados reais); `homolog` só como branch, sem ambiente (seria só um nome); testar direto no banco de produção (risco ao único arquivo do passado); squash também nas promoções.
 - **Afeta:** [ambientes e branches](../arquitetura/ambientes-e-branches.md), [segurança e operação](../arquitetura/seguranca-e-operacao.md), [roadmap](../roadmap/roadmap.md), `CLAUDE.md`
 
