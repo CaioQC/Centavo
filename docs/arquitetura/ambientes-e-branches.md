@@ -23,6 +23,7 @@ Como o código sai da máquina de desenvolvimento e chega ao Centavo do dia a di
 ## Correções
 - **Bug achado no desenvolvimento ou na homologação:** corrigido na `develop` e sobe pelo fluxo normal.
 - **Bug achado na produção (hotfix):** branch a partir da `main` → PR para a `main` (pode ser com squash; a branch do hotfix é descartada) → tag de correção (ex.: `v0.1.0` → `v0.1.1`) → **logo em seguida**, PR `main` → `develop`, com merge comum.
+- **Hotfix que mexe em migration, reconciliação ou anotações do usuário** é testado antes na **instância** de homologação: ela roda a branch do hotfix com o banco restaurado do último backup, sem passar pela branch `homolog`. Esse tipo de correção pode estragar dados que só existem no banco do Centavo (anotações e histórico além dos ~12 meses da Pluggy). Nos outros hotfixes (texto, filtro de tela, cálculo só da interface), o teste é opcional.
 - **A volta do hotfix não espera a produção estabilizar** e acontece sempre antes da próxima promoção para a `homolog`: sem ela, a `develop` fica sem a correção (o mesmo bug reaparece no desenvolvimento e os conflitos crescem) e a homologação testaria uma versão diferente da que vai para a `main`. A `homolog` recebe a correção na promoção seguinte.
 
 ## Ambientes

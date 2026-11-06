@@ -9,8 +9,9 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 - **Motivo:** mesmo depois da homologação, bugs chegam à `main`; corrigi-los pela `develop` faria a correção esperar a etapa inteira. Voltar a `main` para a `develop` deixa as branches iguais e evita conflitos.
 - **Por que logo após cada hotfix:** esperar a produção estabilizar deixaria a `develop` sem a correção (o bug reaparece no desenvolvimento e os conflitos crescem) e a homologação testaria uma versão diferente da que vai para a `main`.
 - **Por que merge:** um reset da `develop` apagaria o trabalho da etapa seguinte; um squash faria as branches divergirem.
+- **Hotfix de risco testado antes:** quando o hotfix mexe em migration, reconciliação ou anotações, ele roda primeiro na instância de homologação (banco restaurado do backup), sem passar pela branch `homolog`. Um bug que escapou para a produção não estava previsto pelos testes, e a correção dele também pode ter efeitos imprevistos sobre dados que só existem no Centavo. Nos demais hotfixes o teste é opcional, para não atrasar correções simples.
 - **Substitui:** a regra "toda correção nasce na `develop`", com hotfix só como exceção para defeito urgente (entrada abaixo).
-- **Alternativas descartadas:** voltar a `main` para a `develop` só depois de a produção estabilizar; atualizar a `develop` com reset para a `main`.
+- **Alternativas descartadas:** voltar a `main` para a `develop` só depois de a produção estabilizar; atualizar a `develop` com reset para a `main`; só fazer backup logo antes do hotfix de risco (garante a volta, mas não evita o estrago); testar todo hotfix na homologação (atrasa correções simples).
 - **Afeta:** [ambientes e branches](../arquitetura/ambientes-e-branches.md), `CLAUDE.md`
 
 ### 2026-11-06: Branches develop, homolog e main, com homologação numa segunda instância
