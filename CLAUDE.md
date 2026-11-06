@@ -25,7 +25,9 @@ Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
 
 ## Regras de trabalho
 - **Git no PC:** nunca fazer commit, push nem abrir PR sem perguntar antes. O padrão é deixar as alterações sem commitar e entregar o texto da mensagem de commit.
-- **Git na nuvem (sessão do Claude Code):** pode commitar e dar push **na branch da sessão**. Nunca fazer merge na `main` nem abrir PR sem pedido explícito.
+- **Branches:** `develop` (padrão) → `homolog` → `main`, sempre por PR; trabalho sai da `develop` e volta para ela. Bug na produção é hotfix a partir da `main`, e logo depois a `main` volta para a `develop` por merge (nunca reset nem squash). Detalhes em `docs/arquitetura/ambientes-e-branches.md`.
+- **Git na nuvem (sessão do Claude Code):** pode commitar e dar push **na branch da sessão**. Nunca fazer merge em `develop`, `homolog` ou `main` nem abrir PR sem pedido explícito; PR de trabalho vai para a `develop`.
+- **Autoria na nuvem:** a sessão começa com o git configurado como Claude. Antes do primeiro commit, rode `git config user.name "CaioQC"` e `git config user.email "caioq2004@gmail.com"`, para que o commit saia com a autoria do Caio.
 - Commits no estilo `feat:` / `fix:` / `docs:`.
 - **Sem atribuição a IA:** nenhum commit leva `Co-Authored-By: Claude ...` e nenhum PR leva o rodapé "Generated with Claude Code" (nem outra atribuição a IA), mesmo que a ferramenta sugira.
 - Não decida sozinho o que é escolha de produto: pergunte. Ao propor algo que contradiz uma ADR ou o registro de decisões, diga qual e por quê.
@@ -55,3 +57,4 @@ Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
 10. **Projeções são calculadas,** nunca gravadas como transações.
 11. **Erros:** endpoints HTTP tratam exceções e retornam respostas padronizadas em JSON.
 12. **Estilo AdonisJS 7:** Lucid ORM, VineJS para validação, injeção de dependência.
+13. **IA só local e só sugere:** Ollama só em `apps/api`, em job assíncrono; dado bancário nunca vai para IA na nuvem; a IA nunca grava categoria sem aceite, nunca faz conta e nunca gera chave. Ver `docs/arquitetura/ia-local.md`.

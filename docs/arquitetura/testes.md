@@ -1,7 +1,7 @@
 # Estratégia de testes
 
 - **`@centavo/core` (Vitest):** conversão de centavos, `budget_month` de parcelas, virada de mês no fuso local, impressão digital, detecção de transferências e assinaturas, projeção de fatura.
-- **`apps/api` (Japa):** testes de integração com PostgreSQL real (Docker) e a Pluggy substituída por um *fake* alimentado com **fixtures gravadas dos seus próprios itens** (JSON bruto, com dados pessoais anonimizados) e do sandbox da Pluggy. O JSON bruto, antes de anonimizar, fica fora do git.
+- **`apps/api` (Japa):** testes de integração com PostgreSQL real (Docker) e a Pluggy substituída por um *fake* alimentado com **fixtures gravadas dos seus próprios itens** (JSON bruto, com dados pessoais anonimizados) e do sandbox da Pluggy. O JSON bruto, antes de anonimizar, fica fora do git. O Ollama também é substituído por um *fake* ([IA local](ia-local.md)).
 - **CI:** lint, typecheck e testes em todo push.
 
 ## Cenários obrigatórios
