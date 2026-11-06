@@ -25,7 +25,7 @@ Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
 
 ## Regras de trabalho
 - **Git no PC:** nunca fazer commit, push nem abrir PR sem perguntar antes. O padrão é deixar as alterações sem commitar e entregar o texto da mensagem de commit.
-- **Branches:** `develop` (padrão) → `homolog` → `main`, sempre por PR; trabalho sai da `develop` e volta para ela. Detalhes em `docs/arquitetura/ambientes-e-branches.md`.
+- **Branches:** `develop` (padrão) → `homolog` → `main`, sempre por PR; trabalho sai da `develop` e volta para ela. Bug na produção é hotfix a partir da `main`, e logo depois a `main` volta para a `develop` por merge (nunca reset nem squash). Detalhes em `docs/arquitetura/ambientes-e-branches.md`.
 - **Git na nuvem (sessão do Claude Code):** pode commitar e dar push **na branch da sessão**. Nunca fazer merge em `develop`, `homolog` ou `main` nem abrir PR sem pedido explícito; PR de trabalho vai para a `develop`.
 - **Autoria na nuvem:** a sessão começa com o git configurado como Claude. Antes do primeiro commit, rode `git config user.name "CaioQC"` e `git config user.email "caioq2004@gmail.com"`, para que o commit saia com a autoria do Caio.
 - Commits no estilo `feat:` / `fix:` / `docs:`.

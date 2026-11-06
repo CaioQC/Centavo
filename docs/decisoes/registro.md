@@ -4,6 +4,15 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-06: Hotfix na main e volta da main para a develop
+- **Decisão:** bug achado na produção é corrigido por hotfix: branch a partir da `main`, PR para a `main` e tag de correção. **Logo depois de cada hotfix**, e também depois de cada promoção conferida para a `main`, a `main` volta para a `develop` por PR com **merge comum**. Bug achado no desenvolvimento ou na homologação continua sendo corrigido na `develop`. Detalhes em [ambientes e branches](../arquitetura/ambientes-e-branches.md).
+- **Motivo:** mesmo depois da homologação, bugs chegam à `main`; corrigi-los pela `develop` faria a correção esperar a etapa inteira. Voltar a `main` para a `develop` deixa as branches iguais e evita conflitos.
+- **Por que logo após cada hotfix:** esperar a produção estabilizar deixaria a `develop` sem a correção (o bug reaparece no desenvolvimento e os conflitos crescem) e a homologação testaria uma versão diferente da que vai para a `main`.
+- **Por que merge:** um reset da `develop` apagaria o trabalho da etapa seguinte; um squash faria as branches divergirem.
+- **Substitui:** a regra "toda correção nasce na `develop`", com hotfix só como exceção para defeito urgente (entrada abaixo).
+- **Alternativas descartadas:** voltar a `main` para a `develop` só depois de a produção estabilizar; atualizar a `develop` com reset para a `main`.
+- **Afeta:** [ambientes e branches](../arquitetura/ambientes-e-branches.md), `CLAUDE.md`
+
 ### 2026-11-06: Branches develop, homolog e main, com homologação numa segunda instância
 - **Decisão:** três branches fixas. O trabalho sai da `develop` (branch padrão) e volta por PR com squash; cada etapa sobe `develop` → `homolog` → `main` por PR com merge comum, e cada chegada à `main` ganha uma tag de versão. `homolog` e `main` só recebem PR. A homologação é uma **segunda instância no PC**, com o banco restaurado do último backup da produção. Detalhes em [ambientes e branches](../arquitetura/ambientes-e-branches.md).
 - **Motivo:**
