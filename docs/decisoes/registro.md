@@ -4,6 +4,16 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-08: Teste de regressão para todo bug e critérios de aceite no fase-N.md
+- **Decisão:** todo bug corrigido (`fix/` ou `hotfix/`) vem com um teste de regressão no mesmo PR, escrito antes da correção e visto falhando sem ela, na camada mais baixa que reproduz o bug, citando a Issue. Bug causado por dado real da Pluggy vira fixture anonimizada; bug impossível de testar automaticamente é justificado no PR. Os critérios de aceite de cada funcionalidade ficam no `roadmap/fase-N.md` (Dado / Quando / Então), e a Issue aponta para eles; cada critério vira pelo menos um teste. Detalhes em [testes](../arquitetura/testes.md).
+- **Motivo:**
+  - Ideia ouvida pelo Caio (Akita no podcast Flow): um bug que já aconteceu mostra onde o código é frágil, e o teste trava esse ponto para que nenhuma release o traga de volta.
+  - Teste escrito depois da correção pode passar com ou sem ela; vê-lo falhar antes prova que ele pega o bug.
+  - Critérios no vault ficam versionados junto com o código e seguem a decisão de 2026-11-04 sobre histórias por fase.
+- **Revisão pendente:** como as tarefas serão gerenciadas — manter o `roadmap/fase-N.md` ou passar histórias e critérios para as Issues.
+- **Alternativas descartadas:** critérios de aceite no corpo de cada Issue (uma fonte só por tarefa, mas fora do repositório; volta na revisão acima); teste de regressão opcional.
+- **Afeta:** [testes](../arquitetura/testes.md), [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md), `CLAUDE.md`
+
 ### 2026-11-06: Tarefas nas Issues do GitHub; convenções de branch e commit
 - **Decisão:** as tarefas do projeto passam a ser **Issues do GitHub**, e o número da Issue entra no nome da branch. Branches no formato `tipo/N-descricao-curta` (tipos `feat`, `fix`, `hotfix`, `docs`, `refactor`, `test`, `chore`, `ci`). Commits e títulos de PR em Conventional Commits com escopo da parte do monorepo (`feat(api): ...`). Detalhes em [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md).
 - **Motivo:**

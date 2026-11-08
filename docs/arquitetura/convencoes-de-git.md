@@ -7,6 +7,8 @@ Padrões de nome para branches, commits e PRs. Complementam o fluxo de [ambiente
 ## Tarefas
 - As tarefas do projeto são **Issues do GitHub**. O número da Issue é o identificador da tarefa.
 - O PR fecha a Issue com `Closes #N` na descrição.
+- Histórias e critérios de aceite ficam no `roadmap/fase-N.md` de cada fase; a Issue aponta para eles ([testes](testes.md)).
+- **Em aberto:** manter o `fase-N.md` ou passar histórias e critérios para as Issues ([registro de decisões](../decisoes/registro.md)).
 - O [roadmap](../roadmap/roadmap.md) (fases) e as [pendências da Pluggy](../pluggy/pendencias.md) continuam no vault.
 - Até a migração, o [backlog](../roadmap/backlog.md) segue no vault.
 
