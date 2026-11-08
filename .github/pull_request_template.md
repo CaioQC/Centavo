@@ -1,13 +1,17 @@
 <!-- Título no padrão `tipo(escopo): descrição` (docs/arquitetura/convencoes-de-git.md). -->
 
 ## Issue
-<!-- Obrigatório em feat, fix e hotfix; opcional nos outros tipos. -->
+<!-- Obrigatório em feat, fix e hotfix; opcional nos outros tipos. Use `Refs #N` se outro PR ainda vai completar a Issue. -->
 Closes #
 
 ## O que mudou
 
 
 ## Como testar
+
+
+## Divisão do trabalho
+<!-- Só em PR misto, com trabalho relevante do Caio e do Claude que não deu para separar. Ex.: "API (apps/api/...): Caio. Telas (apps/web/...): Claude". Apague a seção se não se aplica. -->
 
 
 ## Checklist

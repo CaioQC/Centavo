@@ -4,6 +4,12 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-08: Trabalho do Caio e do Claude em PRs separados
+- **Decisão:** contribuições relevantes do Caio e do Claude vão em PRs separados, mesmo quando são da mesma Issue (`Refs #N` nos anteriores, `Closes #N` no último). Contribuições pequenas não separam PR nem mudam a co-autoria. PR misto inevitável leva a co-autoria e uma seção "Divisão do trabalho" na descrição, que entra no modelo de PR como campo opcional. Detalhes em [uso de IA no desenvolvimento](../arquitetura/uso-de-ia-no-desenvolvimento.md).
+- **Motivo:** a linha de co-autoria vale para o commit inteiro, e o squash faz de cada PR um commit só. Num PR com back do Caio e front do Claude, a co-autoria daria a entender que o Claude fez os dois. PRs separados mantêm a autoria certa em cada commit e no `git blame`.
+- **Alternativas descartadas:** só descrever a divisão no PR misto, como regra (a co-autoria continuaria marcando tudo); merge sem squash nos PRs mistos (quebraria a convenção de um commit por entrega).
+- **Afeta:** [uso de IA no desenvolvimento](../arquitetura/uso-de-ia-no-desenvolvimento.md), [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md), `.github/pull_request_template.md`, `CLAUDE.md`
+
 ### 2026-11-08: Co-autoria do Claude e política de uso de IA no desenvolvimento
 - **Decisão:** commit em que o Claude escreveu parte relevante do diff leva `Co-Authored-By: Claude <noreply@anthropic.com>`; quando ele só revisou, explicou, sugeriu ou redigiu a mensagem de commit ou de PR, não leva. O Caio é sempre o autor. No PC o Claude propõe a linha e o Caio decide; na nuvem o Claude aplica o critério e o Caio confere na revisão. Em PR com co-autoria, a última linha da descrição é a linha de co-autoria, para ela sobreviver ao squash. Também: dado bancário real nunca vai para o Claude; PRs pequenos quando o Claude é o agente; o código do Claude segue as mesmas regras de qualidade. Tudo reunido em [uso de IA no desenvolvimento](../arquitetura/uso-de-ia-no-desenvolvimento.md).
 - **Motivo:**

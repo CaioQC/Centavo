@@ -28,6 +28,12 @@ Regras para o uso do Claude Code no desenvolvimento do Centavo: o que ele pode f
 - **Sem rodapé "Generated with Claude Code"** nem outra atribuição nos PRs: a label `claude` e a co-autoria já cumprem esse papel.
 - **Vale a partir de 2026-11-08:** commits anteriores ficam como estão.
 
+### Separar o trabalho de cada um
+A linha de co-autoria vale para o commit inteiro, e cada PR vira um commit só na `develop` (squash). Por isso a divisão por autor acontece no PR:
+- **Contribuições relevantes do Caio e do Claude vão em PRs separados,** mesmo quando são da mesma Issue. Ex.: na Issue #12, `feat/12-api-login-totp` (back do Caio, sem co-autoria, `Refs #12`) e depois `feat/12-web-login-totp` (front do Claude, com co-autoria, `Closes #12`). Na `develop` ficam dois commits, e o `git blame` mostra quem escreveu cada linha.
+- **Contribuições pequenas não separam PR:** se o Claude ajusta poucas linhas no PR do Caio, não há co-autoria; se o Caio ajusta poucas linhas no PR do Claude, a co-autoria continua.
+- **PR misto inevitável** (back e front que não fazem sentido separados): leva a co-autoria e uma seção **"Divisão do trabalho"** na descrição, dizendo quem fez o quê (ex.: "API (`apps/api/...`): Caio. Telas (`apps/web/...`): Claude"). Como a descrição vira o corpo do commit do squash, a explicação fica no histórico. É a exceção.
+
 ## Dados bancários reais nunca vão para o Claude
 O Claude Code é IA na nuvem. Nada de colar numa conversa, nem no PC: JSON bruto da Pluggy, extratos, saldos reais, o `.env` ou backups. Para depurar, usar as fixtures anonimizadas ([testes](testes.md)). É a mesma regra da IA do produto ([IA local](ia-local.md)).
 
