@@ -54,7 +54,7 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
   - O motivo da decisão de 2026-11-04 (as sessões na nuvem só enxergam o repositório) deixou de valer: elas leem e escrevem Issues pelo GitHub. A própria decisão já apontava as Issues como a próxima opção.
   - Com squash na `develop`, o título do PR vira o commit e a linha das notas da release; por isso o padrão vale principalmente para ele.
   - `hotfix/` separado de `fix/` mostra pelo nome qual branch saiu da `main` e precisa voltar para a `develop`.
-- **Revisão pendente:** o Caio vai rever estas convenções e o uso das Issues.
+- **Revisão pendente:** o Caio vai rever estas convenções e o uso das Issues. Resolvida em 2026-11-08: gestão híbrida e revisão das convenções (entradas acima).
 - **Pendente:** migrar os itens do [backlog](../roadmap/backlog.md) para Issues; até lá, ele segue valendo.
 - **Substitui:** "Lista de tarefas no vault, não no Trello" (2026-11-04).
 - **Alternativas descartadas:** numerar as tarefas à mão no backlog (números repetidos); branch sem número da tarefa.
