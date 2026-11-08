@@ -4,6 +4,16 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-08: PRs das sessões na nuvem: rascunho, assignee e label `claude`
+- **Decisão:** branches `claude/...` só nas sessões do Claude Code na nuvem; no PC, o formato normal `tipo/N-descricao`. Todo PR aberto por uma sessão na nuvem nasce como rascunho, com o Caio como assignee e a label `claude`; só o Caio o tira de rascunho, depois de revisar, e então faz o merge. Detalhes em [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md).
+- **Motivo:**
+  - Regulamentar o uso de IA no projeto: nada feito pelas sessões na nuvem entra sem revisão do Caio, e o histórico mostra o que foi feito com IA.
+  - A ideia original era marcar o Caio como revisor, mas o GitHub não deixa pedir revisão ao autor do PR, e esses PRs saem com o usuário do Caio como autor. Rascunho dá o mesmo efeito: não aceita merge até alguém tirá-lo desse estado.
+  - No PC, o Caio acompanha a sessão e faz ele mesmo o commit e o PR; a branch `claude/...` não acrescenta nada.
+- **Alternativas descartadas:** Caio como revisor (o GitHub não permite para o autor do PR); exigir aprovação antes do merge (travaria todos os PRs, já que ninguém aprova o próprio PR).
+- **Em aberto:** co-autoria das contribuições de IA nos commits (a discutir).
+- **Afeta:** [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md), `CLAUDE.md`
+
 ### 2026-11-08: Revisão das convenções de branch, commit e PR
 - **Decisão:** número da Issue obrigatório na branch só em `feat`, `fix` e `hotfix`. Escopo novo `infra`. Descrição com verbo no presente, minúscula, sem ponto final, até ~70 caracteres. Títulos definidos para os PRs de promoção e de volta (`chore(release): ...`). Modelo de descrição de PR em `.github/pull_request_template.md`. No GitHub: squash usa título e descrição do PR, e a branch é apagada depois do merge. Detalhes em [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md).
 - **Motivo:**
