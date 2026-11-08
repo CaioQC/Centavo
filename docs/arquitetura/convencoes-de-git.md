@@ -2,14 +2,15 @@
 
 Padrões de nome para branches, commits e PRs. Complementam o fluxo de [ambientes, branches e releases](ambientes-e-branches.md). O porquê está no [registro de decisões](../decisoes/registro.md).
 
-> **Revisão pendente:** estas convenções e o uso das Issues serão revistos.
+> **Revisão pendente:** as convenções de nome de branch, commit e PR ainda serão revistas. A gestão das tarefas já foi revista (híbrido, abaixo).
 
-## Tarefas
-- As tarefas do projeto são **Issues do GitHub**. O número da Issue é o identificador da tarefa.
-- O PR fecha a Issue com `Closes #N` na descrição.
-- Histórias e critérios de aceite ficam no `roadmap/fase-N.md` de cada fase; a Issue aponta para eles ([testes](testes.md)).
-- **Em aberto:** manter o `fase-N.md` ou passar histórias e critérios para as Issues ([registro de decisões](../decisoes/registro.md)).
-- O [roadmap](../roadmap/roadmap.md) (fases) e as [pendências da Pluggy](../pluggy/pendencias.md) continuam no vault.
+## Tarefas (híbrido: vault e Issues)
+Cada lugar responde a uma pergunta, e nada é duplicado.
+- **`roadmap/fase-N.md` responde "o que precisa fazer":** as histórias e os critérios de aceite de cada fase (Dado / Quando / Então). É a especificação, versionada junto com os testes ([testes](testes.md)). **Sem checkbox de status.**
+- **Issues do GitHub respondem "em que pé está":** status, branch, PR e discussão. O número da Issue é o identificador da tarefa, e o PR fecha a Issue com `Closes #N`. A Issue de uma história **aponta para ela** no `fase-N.md` e **nunca copia os critérios**.
+- **Milestone = fase do roadmap:** cada Issue de uma fase entra na Milestone dela, que mostra o progresso sozinha.
+- **Só como Issue:** bugs, ideias soltas e dívida técnica, que não têm lugar no `fase-N.md`.
+- **No vault continuam:** o [roadmap](../roadmap/roadmap.md), com o status de cada fase, e as [pendências da Pluggy](../pluggy/pendencias.md).
 - Até a migração, o [backlog](../roadmap/backlog.md) segue no vault.
 
 ## Branches

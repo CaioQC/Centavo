@@ -11,4 +11,4 @@
 | 6. Metas | ⬜ Não iniciada | Metas vinculadas a conta ou investimento e metas com aportes manuais. |
 | 7. Pós-MVP | ⬜ Não iniciada | Widget Pluggy Connect, deploy, [apoio ao Imposto de Renda](../fluxos/imposto-de-renda.md). (App mobile é ideia futura, fora do roadmap.) |
 
-Status: ⬜ não iniciada · 🟨 em andamento · ✅ concluída. Ao mudar o status de uma fase, registre a data no [registro de decisões](../decisoes/registro.md) se algo do plano tiver mudado.
+Status: ⬜ não iniciada · 🟨 em andamento · ✅ concluída. Cada fase é uma Milestone no GitHub, e as histórias e critérios de cada uma ficam em `fase-N.md` nesta pasta ([convenções](../arquitetura/convencoes-de-git.md)). Ao mudar o status de uma fase, registre a data no [registro de decisões](../decisoes/registro.md) se algo do plano tiver mudado.

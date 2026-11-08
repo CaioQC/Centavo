@@ -17,7 +17,7 @@
 - webhook com segredo errado recebe `401` ([ADR 06](../adr/adr-06-seguranca-webhook-e-tunel.md)).
 
 ## Teste por funcionalidade
-- Cada fase tem um `roadmap/fase-N.md` com as histórias e os **critérios de aceite** no formato Dado / Quando / Então. A Issue de cada funcionalidade aponta para os critérios dela nessa nota.
+- Cada fase tem um `roadmap/fase-N.md` com as histórias e os **critérios de aceite** no formato Dado / Quando / Então. A Issue de cada funcionalidade aponta para os critérios dela nessa nota, sem copiá-los ([convenções](convencoes-de-git.md)).
 - Cada critério vira pelo menos um teste automatizado, e a fase só termina com todos passando.
 - Os cenários obrigatórios acima são o ponto de partida para as partes mais arriscadas.
 

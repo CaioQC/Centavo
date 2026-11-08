@@ -4,13 +4,24 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-08: Gestão de tarefas híbrida: especificação no vault, trabalho nas Issues
+- **Decisão:** o `roadmap/fase-N.md` guarda as histórias e os critérios de aceite de cada fase, sem checkbox de status. As Issues do GitHub guardam o trabalho: status, branch, PR e discussão; a Issue de uma história aponta para ela no `fase-N.md` e nunca copia os critérios. Cada fase do roadmap é uma Milestone. Bugs, ideias soltas e dívida técnica existem só como Issue. Detalhes em [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md).
+- **Motivo:**
+  - A especificação versionada junto com o código deixa um critério e o teste dele mudarem no mesmo PR, revisados no mesmo diff; e o `fase-N.md` mostra a fase inteira como um documento, no Obsidian e no portfólio.
+  - As Issues trazem o que o vault não tem: número automático, status real, `Closes #N`, ligação automática com PRs, progresso por Milestone e edição pelo app do GitHub no celular.
+  - Cada informação num lugar só evita que uma das cópias fique desatualizada.
+- **Custo aceito:** dois lugares para consultar, cada um com uma pergunta certa.
+- **Alternativas descartadas:** tudo nas Issues (a especificação sairia do diff do PR e do Obsidian); tudo no vault (sem número automático, status real nem automação).
+- **Resolve:** a revisão pendente sobre gestão de tarefas da entrada de teste de regressão (abaixo).
+- **Afeta:** [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md), [testes](../arquitetura/testes.md), [roadmap](../roadmap/roadmap.md), `CLAUDE.md`
+
 ### 2026-11-08: Teste de regressão para todo bug e critérios de aceite no fase-N.md
 - **Decisão:** todo bug corrigido (`fix/` ou `hotfix/`) vem com um teste de regressão no mesmo PR, escrito antes da correção e visto falhando sem ela, na camada mais baixa que reproduz o bug, citando a Issue. Bug causado por dado real da Pluggy vira fixture anonimizada; bug impossível de testar automaticamente é justificado no PR. Os critérios de aceite de cada funcionalidade ficam no `roadmap/fase-N.md` (Dado / Quando / Então), e a Issue aponta para eles; cada critério vira pelo menos um teste. Detalhes em [testes](../arquitetura/testes.md).
 - **Motivo:**
   - Ideia ouvida pelo Caio (Akita no podcast Flow): um bug que já aconteceu mostra onde o código é frágil, e o teste trava esse ponto para que nenhuma release o traga de volta.
   - Teste escrito depois da correção pode passar com ou sem ela; vê-lo falhar antes prova que ele pega o bug.
   - Critérios no vault ficam versionados junto com o código e seguem a decisão de 2026-11-04 sobre histórias por fase.
-- **Revisão pendente:** como as tarefas serão gerenciadas — manter o `roadmap/fase-N.md` ou passar histórias e critérios para as Issues.
+- **Revisão pendente:** como as tarefas serão gerenciadas — manter o `roadmap/fase-N.md` ou passar histórias e critérios para as Issues. Resolvida no mesmo dia: híbrido (entrada acima).
 - **Alternativas descartadas:** critérios de aceite no corpo de cada Issue (uma fonte só por tarefa, mas fora do repositório; volta na revisão acima); teste de regressão opcional.
 - **Afeta:** [testes](../arquitetura/testes.md), [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md), `CLAUDE.md`
 

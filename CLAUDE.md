@@ -19,7 +19,7 @@ Toda a especificação está no vault do Obsidian em `docs/`. Comece por [docs/i
 | Fluxos (conexão, reconciliação, pipeline, fatura, orçamento) | `docs/fluxos/` |
 | O que a Pluggy faz de verdade | `docs/pluggy/fatos-verificados.md` |
 | O que ainda falta confirmar | `docs/pluggy/pendencias.md` |
-| Próximos passos | `docs/roadmap/roadmap.md` (fases) e as Issues do GitHub (tarefas; `docs/roadmap/backlog.md` até a migração) |
+| Próximos passos | `docs/roadmap/roadmap.md` (fases), `docs/roadmap/fase-N.md` (histórias e critérios de aceite) e as Issues do GitHub (status das tarefas, uma Milestone por fase; `docs/roadmap/backlog.md` até a migração) |
 | Nomes de branch, commits e PRs | `docs/arquitetura/convencoes-de-git.md` |
 
 Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
