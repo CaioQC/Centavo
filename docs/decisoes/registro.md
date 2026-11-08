@@ -4,6 +4,18 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-08: Revisão das convenções de branch, commit e PR
+- **Decisão:** número da Issue obrigatório na branch só em `feat`, `fix` e `hotfix`. Escopo novo `infra`. Descrição com verbo no presente, minúscula, sem ponto final, até ~70 caracteres. Títulos definidos para os PRs de promoção e de volta (`chore(release): ...`). Modelo de descrição de PR em `.github/pull_request_template.md`. No GitHub: squash usa título e descrição do PR, e a branch é apagada depois do merge. Detalhes em [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md).
+- **Motivo:**
+  - Criar Issue para corrigir um erro de digitação na documentação é atrito; nas branches de funcionalidade e correção, o número mantém a ligação com a tarefa.
+  - A CI vai barrar título fora do padrão, e os PRs de promoção e de volta não tinham título definido.
+  - Docker Compose, backup e homologação não cabem em `api`, `web` nem `core`.
+  - Os commits do histórico misturavam formas; um estilo só deixa as notas da release uniformes.
+  - O modelo de PR junta num lugar as regras já decididas (teste de regressão, critérios, registro, hotfix de risco).
+- **Resolve:** a revisão pendente das convenções (entrada de 2026-11-06 sobre Issues e convenções).
+- **Alternativas descartadas:** número da Issue obrigatório em toda branch; sem escopo para infraestrutura.
+- **Afeta:** [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md), `.github/pull_request_template.md`, `CLAUDE.md`
+
 ### 2026-11-08: Stack de testes enxuta
 - **Decisão:** só três ferramentas de teste: Vitest no `core` (com relógio falso), Japa na `api` e o mesmo Docker Compose do desenvolvimento, com banco separado para testes. Teste "golden" da reconciliação na Fase 2. Sem teste automatizado no `web` no começo. CI verde obrigatória para o merge nas três branches e *push protection* de segredos do GitHub. Detalhes em [testes](../arquitetura/testes.md).
 - **Motivo:**

@@ -29,7 +29,7 @@ Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
 - **Branches:** `develop` (padrão) → `homolog` → `main`, sempre por PR; trabalho sai da `develop` e volta para ela. Bug na produção é hotfix a partir da `main`, e logo depois a `main` volta para a `develop` por merge (nunca reset nem squash). Detalhes em `docs/arquitetura/ambientes-e-branches.md`.
 - **Git na nuvem (sessão do Claude Code):** pode commitar e dar push **na branch da sessão**. Nunca fazer merge em `develop`, `homolog` ou `main` nem abrir PR sem pedido explícito; PR de trabalho vai para a `develop`.
 - **Autoria na nuvem:** a sessão começa com o git configurado como Claude. Antes do primeiro commit, rode `git config user.name "CaioQC"` e `git config user.email "caioq2004@gmail.com"`, para que o commit saia com a autoria do Caio.
-- Commits e títulos de PR em Conventional Commits com escopo (`feat(api): ...`); branches `tipo/N-descricao` com o número da Issue. Detalhes em `docs/arquitetura/convencoes-de-git.md`.
+- Commits e títulos de PR em Conventional Commits com escopo (`feat(api): ...`); branches `tipo/N-descricao` (número da Issue obrigatório em `feat`, `fix` e `hotfix`). Detalhes em `docs/arquitetura/convencoes-de-git.md`.
 - **Sem atribuição a IA:** nenhum commit leva `Co-Authored-By: Claude ...` e nenhum PR leva o rodapé "Generated with Claude Code" (nem outra atribuição a IA), mesmo que a ferramenta sugira.
 - Não decida sozinho o que é escolha de produto: pergunte. Ao propor algo que contradiz uma ADR ou o registro de decisões, diga qual e por quê.
 
