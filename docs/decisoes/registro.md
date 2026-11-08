@@ -4,6 +4,19 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-08: Co-autoria do Claude e política de uso de IA no desenvolvimento
+- **Decisão:** commit em que o Claude escreveu parte relevante do diff leva `Co-Authored-By: Claude <noreply@anthropic.com>`; quando ele só revisou, explicou, sugeriu ou redigiu a mensagem de commit ou de PR, não leva. O Caio é sempre o autor. No PC o Claude propõe a linha e o Caio decide; na nuvem o Claude aplica o critério e o Caio confere na revisão. Em PR com co-autoria, a última linha da descrição é a linha de co-autoria, para ela sobreviver ao squash. Também: dado bancário real nunca vai para o Claude; PRs pequenos quando o Claude é o agente; o código do Claude segue as mesmas regras de qualidade. Tudo reunido em [uso de IA no desenvolvimento](../arquitetura/uso-de-ia-no-desenvolvimento.md).
+- **Motivo:**
+  - O Caio vai escrever boa parte do back-end à mão e usar o Claude como agente principalmente no front-end, área que domina menos. A co-autoria deve refletir quem fez o trabalho, não o simples uso da ferramenta.
+  - Declarar o uso de IA no próprio commit é mais honesto e mais fácil de explicar num portfólio do que esconder.
+  - A mensagem do squash é o título e a descrição do PR; sem a linha na descrição, a co-autoria se perderia na `develop`.
+  - O Claude Code é IA na nuvem: a regra 13 (dado bancário nunca vai para IA na nuvem) vale para ele também, não só para o Ollama.
+  - PR pequeno é o que torna a revisão do rascunho real.
+- **Substitui:** a regra "sem atribuição a IA" do `CLAUDE.md`, que proibia qualquer co-autoria. A proibição do rodapé "Generated with Claude Code" nos PRs continua.
+- **Alternativas descartadas:** sem atribuição nenhuma (a IA ficaria visível só na label do PR); co-autoria em todo commit em que o Claude ajudou (incluiria revisões e mensagens de commit); o Claude como autor (os commits não contariam como do Caio no gráfico de contribuições).
+- **Não aplicado (por ora):** seção "Uso de IA" no README.
+- **Afeta:** [uso de IA no desenvolvimento](../arquitetura/uso-de-ia-no-desenvolvimento.md), [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md), `.github/pull_request_template.md`, `CLAUDE.md`
+
 ### 2026-11-08: PRs das sessões na nuvem: rascunho, assignee e label `claude`
 - **Decisão:** branches `claude/...` só nas sessões do Claude Code na nuvem; no PC, o formato normal `tipo/N-descricao`. Todo PR aberto por uma sessão na nuvem nasce como rascunho, com o Caio como assignee e a label `claude`; só o Caio o tira de rascunho, depois de revisar, e então faz o merge. Detalhes em [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md).
 - **Motivo:**
@@ -11,7 +24,7 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
   - A ideia original era marcar o Caio como revisor, mas o GitHub não deixa pedir revisão ao autor do PR, e esses PRs saem com o usuário do Caio como autor. Rascunho dá o mesmo efeito: não aceita merge até alguém tirá-lo desse estado.
   - No PC, o Caio acompanha a sessão e faz ele mesmo o commit e o PR; a branch `claude/...` não acrescenta nada.
 - **Alternativas descartadas:** Caio como revisor (o GitHub não permite para o autor do PR); exigir aprovação antes do merge (travaria todos os PRs, já que ninguém aprova o próprio PR).
-- **Em aberto:** co-autoria das contribuições de IA nos commits (a discutir).
+- **Em aberto:** co-autoria das contribuições de IA nos commits. Resolvida no mesmo dia (entrada acima).
 - **Afeta:** [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md), `CLAUDE.md`
 
 ### 2026-11-08: Revisão das convenções de branch, commit e PR

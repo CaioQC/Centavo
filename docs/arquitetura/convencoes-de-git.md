@@ -27,7 +27,7 @@ Cada lugar responde a uma pergunta, e nada é duplicado.
 | `chore/` | manutenção: dependências, configuração |
 | `ci/` | pipeline da CI |
 
-- **Branches `claude/...`:** só existem nas sessões do Claude Code na nuvem, que recebem esse nome fixo e não seguem o formato (ver "Contribuições do Claude", abaixo).
+- **Branches `claude/...`:** só existem nas sessões do Claude Code na nuvem, que recebem esse nome fixo e não seguem o formato ([uso de IA no desenvolvimento](uso-de-ia-no-desenvolvimento.md)).
 
 ## Commits e títulos de PR
 - **Formato** ([Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/)): `tipo(escopo): descrição`, em português.
@@ -55,11 +55,4 @@ Também passam pela verificação do título ([ambientes, branches e releases](a
 - **Branch apagada automaticamente** depois do merge.
 
 ## Contribuições do Claude
-- **Sessões na nuvem (celular):** trabalham numa branch `claude/...`, de nome fixo. Vale o título do PR, que é o que entra na `develop`.
-- **Sessões no PC:** não usam `claude/...`; seguem o formato normal `tipo/N-descricao`, e o Caio faz commit e PR por lá.
-- **Todo PR aberto por uma sessão na nuvem:**
-  - é aberto como **rascunho** (*draft*), que não aceita merge;
-  - tem o **Caio como assignee**;
-  - leva a label **`claude`**, que mostra no histórico o que foi feito com IA.
-- **Só o Caio tira o PR de rascunho** ("Ready for review"), depois de revisar as mudanças; só então faz o merge.
-- **Por que não "revisor":** o GitHub não deixa pedir revisão ao autor do PR, e os PRs abertos pelas sessões saem com o usuário do Caio como autor. Pelo mesmo motivo, exigir aprovação antes do merge travaria todos os PRs do projeto.
+- Branches `claude/...`, PRs em rascunho com a label `claude`, revisão e co-autoria: ver [uso de IA no desenvolvimento](uso-de-ia-no-desenvolvimento.md).

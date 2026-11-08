@@ -15,3 +15,4 @@ Closes #
 - [ ] Funcionalidade: os critérios de aceite do `fase-N.md` estão cobertos por testes
 - [ ] Decisão nova: registrada em `docs/decisoes/registro.md` e aplicada nas notas afetadas
 - [ ] Hotfix que mexe em migration, reconciliação ou anotações: testado antes na instância de homologação
+- [ ] Commits com co-autoria do Claude: a última linha desta descrição é `Co-Authored-By: Claude <noreply@anthropic.com>`

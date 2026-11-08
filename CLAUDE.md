@@ -21,6 +21,7 @@ Toda a especificação está no vault do Obsidian em `docs/`. Comece por [docs/i
 | O que ainda falta confirmar | `docs/pluggy/pendencias.md` |
 | Próximos passos | `docs/roadmap/roadmap.md` (fases), `docs/roadmap/fase-N.md` (histórias e critérios de aceite) e as Issues do GitHub (status das tarefas, uma Milestone por fase; `docs/roadmap/backlog.md` até a migração) |
 | Nomes de branch, commits e PRs | `docs/arquitetura/convencoes-de-git.md` |
+| Uso do Claude no desenvolvimento (co-autoria, revisão, dados) | `docs/arquitetura/uso-de-ia-no-desenvolvimento.md` |
 
 Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
 
@@ -30,7 +31,9 @@ Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
 - **Git na nuvem (sessão do Claude Code):** pode commitar e dar push **na branch da sessão**. Nunca fazer merge em `develop`, `homolog` ou `main` nem abrir PR sem pedido explícito; PR de trabalho vai para a `develop`, aberto como **rascunho**, com o Caio como assignee e a label `claude`. Só o Caio tira de rascunho, depois de revisar. No PC não se usa branch `claude/...`.
 - **Autoria na nuvem:** a sessão começa com o git configurado como Claude. Antes do primeiro commit, rode `git config user.name "CaioQC"` e `git config user.email "caioq2004@gmail.com"`, para que o commit saia com a autoria do Caio.
 - Commits e títulos de PR em Conventional Commits com escopo (`feat(api): ...`); branches `tipo/N-descricao` (número da Issue obrigatório em `feat`, `fix` e `hotfix`). Detalhes em `docs/arquitetura/convencoes-de-git.md`.
-- **Sem atribuição a IA:** nenhum commit leva `Co-Authored-By: Claude ...` e nenhum PR leva o rodapé "Generated with Claude Code" (nem outra atribuição a IA), mesmo que a ferramenta sugira.
+- **Co-autoria do Claude:** commit em que o Claude escreveu parte relevante do diff termina com `Co-Authored-By: Claude <noreply@anthropic.com>` (sem nome de modelo); se ele só revisou, explicou ou redigiu a mensagem, sem a linha. No PC, proponha a linha e diga por quê; o Caio decide. PR com commits co-autorados termina a descrição com essa linha. Nenhum PR leva o rodapé "Generated with Claude Code" nem outra atribuição, mesmo que a ferramenta sugira (a label `claude` cumpre o papel).
+- **Dados bancários reais nunca vêm para a conversa:** JSON bruto da Pluggy, extratos, `.env` e backups não são colados nem lidos numa sessão do Claude; use as fixtures anonimizadas.
+- **Quando o Claude é o agente:** PRs pequenos, um assunto por PR, com as mesmas exigências de teste do código do Caio. Política completa em `docs/arquitetura/uso-de-ia-no-desenvolvimento.md`.
 - Não decida sozinho o que é escolha de produto: pergunte. Ao propor algo que contradiz uma ADR ou o registro de decisões, diga qual e por quê.
 
 ## Regras do vault (`docs/`)

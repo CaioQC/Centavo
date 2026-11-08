@@ -18,6 +18,7 @@ Sistema de gerenciamento financeiro pessoal integrado à API da **Pluggy (Open F
 - [Ambientes, branches e releases](arquitetura/ambientes-e-branches.md)
 - [Backup](arquitetura/backup.md)
 - [Convenções de branch, commit e PR](arquitetura/convencoes-de-git.md)
+- [Uso de IA no desenvolvimento](arquitetura/uso-de-ia-no-desenvolvimento.md)
 - [Estratégia de testes](arquitetura/testes.md)
 - [IA local (Ollama)](arquitetura/ia-local.md)
 
