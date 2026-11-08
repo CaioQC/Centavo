@@ -4,6 +4,16 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-08: Stack de testes enxuta
+- **Decisão:** só três ferramentas de teste: Vitest no `core` (com relógio falso), Japa na `api` e o mesmo Docker Compose do desenvolvimento, com banco separado para testes. Teste "golden" da reconciliação na Fase 2. Sem teste automatizado no `web` no começo. CI verde obrigatória para o merge nas três branches e *push protection* de segredos do GitHub. Detalhes em [testes](../arquitetura/testes.md).
+- **Motivo:**
+  - O pacote completo proposto (11 itens) era coisa demais para um projeto de uma pessoa que ainda está aprendendo a stack.
+  - O risco do Centavo está em dinheiro, datas e reconciliação, que ficam no `core` e na `api`; o `web` só mostra dados, e a tela é testada à mão na homologação.
+  - Docker Compose já existe para o desenvolvimento: uma ferramenta a menos que o Testcontainers. O *push protection* do GitHub é de graça e não exige configurar o gitleaks.
+  - O que ficou de fora volta quando um tipo de bug se repetir.
+- **Alternativas descartadas (por enquanto):** `fast-check`, Testcontainers, React Testing Library e MSW, Playwright, contrato semanal com a Pluggy, restauração mensal automática do backup, Stryker, cobertura mínima e gitleaks. Ficam em "Considerar depois" na nota de testes.
+- **Afeta:** [testes](../arquitetura/testes.md), [stack](../arquitetura/stack.md), [roadmap](../roadmap/roadmap.md)
+
 ### 2026-11-08: Gestão de tarefas híbrida: especificação no vault, trabalho nas Issues
 - **Decisão:** o `roadmap/fase-N.md` guarda as histórias e os critérios de aceite de cada fase, sem checkbox de status. As Issues do GitHub guardam o trabalho: status, branch, PR e discussão; a Issue de uma história aponta para ela no `fase-N.md` e nunca copia os critérios. Cada fase do roadmap é uma Milestone. Bugs, ideias soltas e dívida técnica existem só como Issue. Detalhes em [convenções de branch, commit e PR](../arquitetura/convencoes-de-git.md).
 - **Motivo:**

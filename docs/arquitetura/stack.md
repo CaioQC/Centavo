@@ -10,4 +10,4 @@
 | **Integração Bancária** | Pluggy API (`pluggy-sdk`) via **Meu Pluggy** | Agregador Open Finance no Brasil; o Meu Pluggy é gratuito para uso pessoal. |
 | **IA local** | Ollama + modelo Qwen, rodando na GPU do PC | Sugestões de categoria e regra, perguntas e resumo do mês sem tirar dado bancário do PC. Ver [IA local](ia-local.md). |
 | **2FA** | TOTP (RFC 6238) | Dados bancários reais justificam o segundo fator. |
-| **Testes** | Japa (API), Vitest (`core` e `web`) | Japa é o runner oficial do AdonisJS. Ver [testes](testes.md). |
+| **Testes** | Japa (API), Vitest (`core`), Docker Compose (Postgres e Redis de teste) | Japa é o runner oficial do AdonisJS. Stack enxuta; ver [testes](testes.md). |

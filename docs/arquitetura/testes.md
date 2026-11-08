@@ -1,8 +1,14 @@
 # Estratégia de testes
 
-- **`@centavo/core` (Vitest):** conversão de centavos, `budget_month` de parcelas, virada de mês no fuso local, impressão digital, detecção de transferências e assinaturas, projeção de fatura.
-- **`apps/api` (Japa):** testes de integração com PostgreSQL real (Docker) e a Pluggy substituída por um *fake* alimentado com **fixtures gravadas dos seus próprios itens** (JSON bruto, com dados pessoais anonimizados) e do sandbox da Pluggy. O JSON bruto, antes de anonimizar, fica fora do git. O Ollama também é substituído por um *fake* ([IA local](ia-local.md)).
-- **CI:** lint, typecheck e testes em todo push.
+Stack enxuta: só três ferramentas (Vitest, Japa e Docker Compose), concentradas no que é arriscado no Centavo (dinheiro, datas e reconciliação). O porquê está no [registro de decisões](../decisoes/registro.md).
+
+- **`@centavo/core` (Vitest):** conversão de centavos, `budget_month` de parcelas, virada de mês no fuso local, impressão digital, detecção de transferências e assinaturas, projeção de fatura. Data e hora congeladas com o **relógio falso** do Vitest (`vi.setSystemTime`), para os testes de fuso e virada de mês não dependerem do dia em que rodam.
+- **`apps/api` (Japa):** testes de integração com PostgreSQL e Redis reais, pelo mesmo Docker Compose do desenvolvimento, num banco separado só para testes. A Pluggy é substituída por um *fake* alimentado com **fixtures gravadas dos seus próprios itens** (JSON bruto, com dados pessoais anonimizados) e do sandbox da Pluggy. O JSON bruto, antes de anonimizar, fica fora do git. O Ollama também é substituído por um *fake* ([IA local](ia-local.md)).
+- **Teste "golden" da reconciliação (Fase 2):** uma fixture entra, a [reconciliação](../fluxos/reconciliacao.md) roda e o estado do banco é comparado com um resultado esperado guardado em arquivo; rodar duas vezes dá o mesmo resultado.
+- **`apps/web`:** sem teste automatizado no começo. Toda regra que importa mora no `core`; o `web` só mostra dados e é testado à mão na homologação ([ambientes, branches e releases](ambientes-e-branches.md)).
+- **CI:** lint, typecheck, testes e título do PR em todo push. **CI verde é obrigatória** para o merge na `develop`, na `homolog` e na `main`.
+- **Segredos:** *push protection* de segredos do GitHub ligado no repositório.
+- **Onde rodam:** os testes do `core` rodam em qualquer lugar; os da `api` precisam de Docker, então rodam no PC e na CI (nas sessões do Claude Code na nuvem o Docker não está ativo).
 
 ## Cenários obrigatórios
 - reentrega do mesmo webhook não duplica nada ([ADR 02](../adr/adr-02-idempotencia-e-ciclo-de-vida.md));
@@ -30,5 +36,10 @@ Todo bug corrigido ganha um teste que impede que ele volte numa release futura.
 5. **Bug causado por dado real da Pluggy:** o caso anonimizado entra nas fixtures, e o *fake* da Pluggy passa a reproduzi-lo.
 6. **Exceção:** se o bug não puder ser testado automaticamente (ex.: problema só visual), o PR explica por quê.
 
-## Em aberto
-Propostas ainda não decididas: testes baseados em propriedades (`fast-check`) no `core`; Testcontainers ou docker-compose de teste na `api`; relógio falso; testes "golden" do pipeline; varredura de segredos (gitleaks) na CI; React Testing Library e MSW no `web`; Playwright para poucos fluxos ponta a ponta; rotinas agendadas (contrato com o sandbox da Pluggy, restauração do backup, avaliação da IA); testes de mutação (Stryker); proteção na `main` exigindo a CI verde.
+## Considerar depois
+Ficaram fora para manter a stack enxuta. Voltam quando um tipo de bug se repetir:
+- **Bugs de tela:** React Testing Library e MSW (componentes) ou Playwright (poucos fluxos ponta a ponta, começando por login com TOTP).
+- **Erros de conta com casos estranhos:** testes baseados em propriedades com `fast-check` no `core`.
+- **Fake da Pluggy desatualizado:** teste semanal de contrato contra o sandbox. Até lá, aparece como bug e vira teste de regressão.
+- **Qualidade dos testes do `core`:** testes de mutação (Stryker) e cobertura mínima.
+- **Também:** Testcontainers no lugar do Docker Compose; gitleaks na CI; verificação mensal automática da restauração do backup (hoje ela é testada a cada promoção, ver [backup](backup.md)).
