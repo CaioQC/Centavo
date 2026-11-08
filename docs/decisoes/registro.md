@@ -13,7 +13,7 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 ### 2026-11-08: Co-autoria do Claude e política de uso de IA no desenvolvimento
 - **Decisão:** commit em que o Claude escreveu parte relevante do diff leva `Co-Authored-By: Claude <noreply@anthropic.com>`; quando ele só revisou, explicou, sugeriu ou redigiu a mensagem de commit ou de PR, não leva. O Caio é sempre o autor. No PC o Claude propõe a linha e o Caio decide; na nuvem o Claude aplica o critério e o Caio confere na revisão. Em PR com co-autoria, a última linha da descrição é a linha de co-autoria, para ela sobreviver ao squash. Também: dado bancário real nunca vai para o Claude; PRs pequenos quando o Claude é o agente; o código do Claude segue as mesmas regras de qualidade. Tudo reunido em [uso de IA no desenvolvimento](../arquitetura/uso-de-ia-no-desenvolvimento.md).
 - **Motivo:**
-  - O Caio vai escrever boa parte do back-end à mão e usar o Claude como agente principalmente no front-end, área que domina menos. A co-autoria deve refletir quem fez o trabalho, não o simples uso da ferramenta.
+  - O Caio vai escrever boa parte do back-end à mão e usar o Claude como agente principalmente no front-end, fora do seu foco. A co-autoria deve refletir quem fez o trabalho, não o simples uso da ferramenta.
   - Declarar o uso de IA no próprio commit é mais honesto e mais fácil de explicar num portfólio do que esconder.
   - A mensagem do squash é o título e a descrição do PR; sem a linha na descrição, a co-autoria se perderia na `develop`.
   - O Claude Code é IA na nuvem: a regra 13 (dado bancário nunca vai para IA na nuvem) vale para ele também, não só para o Ollama.
@@ -137,7 +137,7 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 ### 2026-11-06: Apoio à declaração do Imposto de Renda na Fase 7
 - **Decisão:** a Fase 7 (pós-MVP) ganha um [apoio à declaração do IRPF](../fluxos/imposto-de-renda.md), em três partes por prioridade: saldos em 31/12 de contas e investimentos; despesas dedutíveis do ano; e, com menor prioridade, um checklist anual de informes. O Centavo confere e organiza; não calcula imposto nem restituição.
 - **Motivo:**
-  - Conselho de um colega de trabalho: declarar mesmo sem ser obrigado, para pegar prática e recuperar imposto retido no salário.
+  - Declarar o IR, mesmo quando não é obrigatório, pode devolver imposto retido na fonte; conferir a declaração é trabalhoso, e o Centavo já tem os dados para ajudar.
   - O cálculo depende do informe do empregador (bruto, IR retido), que o Centavo não vê. A pré-preenchida da Receita já traz o informe, as despesas de saúde e os saldos, mas costuma falhar nos saldos; conferir é onde o Centavo agrega.
   - Relatórios ficaram fora do MVP (2026-11-02), por isso a Fase 7. Saldos e categorias já são gravados desde as fases 2 e 3, então nada precisa ser antecipado.
 - **Alternativas descartadas:** ideia futura fora do roadmap, como o app mobile; calcular imposto ou restituição (faltam os dados do empregador e duplicaria o programa da Receita).
