@@ -15,7 +15,12 @@ Sistema de gerenciamento financeiro pessoal integrado à API da **Pluggy (Open F
 - [Monorepo e papel de cada parte](arquitetura/monorepo.md)
 - [Stack tecnológica](arquitetura/stack.md)
 - [Segurança e operação](arquitetura/seguranca-e-operacao.md)
+- [Ambientes, branches e releases](arquitetura/ambientes-e-branches.md)
+- [Backup](arquitetura/backup.md)
+- [Convenções de branch, commit e PR](arquitetura/convencoes-de-git.md)
+- [Uso de IA no desenvolvimento](arquitetura/uso-de-ia-no-desenvolvimento.md)
 - [Estratégia de testes](arquitetura/testes.md)
+- [IA local (Ollama)](arquitetura/ia-local.md)
 
 ## ADRs (decisões de arquitetura)
 | ADR | Assunto |
@@ -41,6 +46,7 @@ Sistema de gerenciamento financeiro pessoal integrado à API da **Pluggy (Open F
 - [Pipeline de uma transação](fluxos/pipeline-de-transacao.md)
 - [Projeção de fatura](fluxos/projecao-de-fatura.md)
 - [Orçamento do mês](fluxos/orcamento-do-mes.md)
+- [Apoio à declaração do Imposto de Renda](fluxos/imposto-de-renda.md)
 
 ## Pluggy
 - [Fatos verificados na documentação](pluggy/fatos-verificados.md)
@@ -48,5 +54,5 @@ Sistema de gerenciamento financeiro pessoal integrado à API da **Pluggy (Open F
 
 ## Planejamento
 - [Roadmap](roadmap/roadmap.md)
-- [Backlog (tarefas soltas)](roadmap/backlog.md)
+- [Backlog (tarefas soltas; migrando para as Issues do GitHub)](roadmap/backlog.md)
 - [Registro de decisões](decisoes/registro.md)
