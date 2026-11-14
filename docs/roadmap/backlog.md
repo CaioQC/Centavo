@@ -10,6 +10,11 @@ Lista única de tarefas soltas do projeto, fora das fases do [roadmap](roadmap.m
 ## Antes da Fase 3
 - [ ] Testar o Ollama no PC (Windows, RX 9060 XT 16 GB) com o backend Vulkan: confirmar em `ollama ps` que o modelo roda na GPU e anotar a velocidade com um Qwen de ~9B e um de ~27B. Registrar o resultado na nota [IA local](../arquitetura/ia-local.md).
 
+## Quando acontecer
+Tarefas sem fase, presas a um gatilho.
+- [ ] **Gatilho: uma pasta (`apps/api`, `apps/web` ou `packages/core`) passa a ter regras só dela.** Criar o `CLAUDE.md` da pasta e mover para lá essas regras, deixando no da raiz só o que vale para tudo. O Claude Code só carrega o `CLAUDE.md` de uma pasta quando trabalha nela ([uso de IA no desenvolvimento](../arquitetura/uso-de-ia-no-desenvolvimento.md)).
+- [ ] **Gatilho: uma tarefa na nuvem não coube numa sessão.** Testar se uma sessão nova na nuvem consegue continuar e dar push numa branch `claude/...` já existente. Se der, registrar a continuação na mesma branch e no mesmo PR rascunho; se não, a regra "cabe numa sessão" continua.
+
 ## Documentação
 - [ ] **Diagramas em Mermaid** (adiado por escolha; abordagem já decidida, ver registro em 2026-11-04):
   - [ ] Arquitetura de contêineres: PC, Docker (Postgres, Redis), API, worker, web, túnel, Pluggy, Meu Pluggy. Também vai para o README.
