@@ -72,3 +72,20 @@ O contexto de uma sessão é limitado: quando enche, a conversa é compactada e 
 ## Revisão possível
 - **PRs pequenos quando o Claude é o agente:** um assunto por PR, para a revisão ser de verdade.
 - **Mesmas regras de qualidade:** o código escrito pelo Claude segue as mesmas exigências do código do Caio: testes, critérios de aceite do `fase-N.md` e teste de regressão ([testes](testes.md)).
+
+## Agentes
+Subagentes do Claude Code com uma tarefa só, contexto próprio e ferramentas limitadas. Ficam em `.claude/agents/`, versionados como código, e mudam por PR. O prompt de cada um **aponta** para o `CLAUDE.md`, as ADRs e os fluxos, sem copiar as regras, para não divergirem. Vieram do centavo-mobile, adaptados.
+
+| Agente | Tarefa | Pode editar? | Modelo | Quando usar |
+|---|---|---|---|---|
+| `revisor-de-regras` | Aponta no diff violações das regras que pedem julgamento: idempotência, soft delete, item sem sucesso, anotações do usuário, identidade da operação, jobs e reconexão, reconciliação como fonte da verdade, saldos, conversão da Pluggy na borda, datas, transferências, AdonisJS 7, segurança; no web, DTO e formatação vindos do `core` | Não | Sonnet | Uma vez por PR com código, antes de propor o commit |
+| `testador-do-core` | Testes Vitest do `@centavo/core`, com os casos de borda das ADRs 01, 08, 09, 10 e 11. **Modo casos** (padrão): lista os casos que faltam e roda a suíte. **Modo escrita**: escreve testes | Só no modo escrita, e só `packages/core/**/*.test.ts` | Sonnet | Função nova ou alterada no `core`; bug no `core` |
+
+- **Por que Sonnet nos dois:** as regras são semânticas ("esse caminho apaga dados quando o item falhou?") e achar caso de borda exige entender o domínio; o Haiku casa padrões e produz teste raso. Num PR da reconciliação ou da [ADR 09](../adr/adr-09-anotacoes-sobrevivem-troca-de-id.md), o revisor pode ser chamado com Opus, pontualmente.
+- **Um segundo par de olhos de verdade:** o back-end é escrito à mão pelo Caio, então o revisor não tem os pontos cegos de quem escreveu. No código escrito pelo Claude (sobretudo o web) o revisor é o mesmo modelo, e a revisão do Caio no PR pesa mais. Ela continua obrigatória nos dois casos.
+- **Testes do código do Caio são escritos pelo Caio:** no código que ele escreveu, o testador fica no modo casos e descreve em Dado / Quando / Então o que falta, inclusive o teste de regressão de um bug. O modo escrita é só para código escrito pelo Claude ou para um PR próprio de cobertura (`test(core): ...`, `Refs #N`). Assim o teste de regressão, que vai no mesmo PR da correção ([testes](testes.md)), não transforma o PR do Caio num PR misto (seção "Separar o trabalho de cada um", acima).
+- **Complementam, não substituem:** regra que dá para checar por máquina (imports proibidos, `any`, `process.env` no `core`, número fracionário, métodos de data fora do módulo de datas, migration editada, `fix/` sem teste) vai para ESLint e CI na Fase 0 ([backlog](../roadmap/backlog.md)). O agente é para o que pede julgamento.
+- **Limites são instruções, com uma rede por baixo:** o campo `tools` libera ferramentas inteiras (o testador tem `Write`; o revisor, `Bash`), e o "só `*.test.ts`" ou "só git de leitura" está no prompt. Por baixo, o `.claude/settings.json` versionado nega a leitura de `.env*` e de `**/fixtures/pluggy-raw/**` e os comandos `psql`, `pg_dump`, `pg_restore` e `docker exec`, porque nesta máquina há dado bancário real no disco e nos bancos. É uma rede, não um muro: o Bash tem como contornar. A regra continua sendo a da seção "Dados bancários reais nunca vão para o Claude".
+- **Custo:** cada agente começa do zero e consome o mesmo limite de uso do plano. Por isso, uma vez por PR, não a cada edição.
+- **Co-autoria:** apontamentos do revisor e casos listados pelo testador não levam a linha de co-autoria; testes escritos no modo escrita levam.
+- **Próximos:** `testador-da-api` (Japa) depois da Fase 2, quando existirem o *fake* da Pluggy, as fixtures e o teste golden; ele só roda no PC, porque precisa de Docker. `auditor-de-design` (Haiku) quando o web tiver uma nota de design com tokens. Ambos no [backlog](../roadmap/backlog.md).
