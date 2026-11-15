@@ -1,8 +1,18 @@
 # Registro de decisões
 
-Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi descartado. Entrada nova no topo (modelo em [templates/decisao.md](../templates/decisao.md)). As regras vigentes ficam nas notas de [produto](../produto/decisoes-de-produto.md) e nas ADRs; aqui fica o raciocínio, para que ninguém (pessoa ou IA) "corrija" algo que foi decidido de propósito.
+Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi descartado. Entrada nova no topo (modelo em [templates/decisao.md](../templates/decisao.md)). As regras vigentes ficam nas notas de [produto](../produto/decisoes-de-produto.md) e nas ADRs; aqui fica o raciocínio, para que ninguém (pessoa ou IA) "corrija" algo que foi decidido de propósito. Cada entrada começa num título `### data: título`; para achar uma decisão, busque o assunto e leia só a entrada dela, não o arquivo inteiro.
 
 ---
+
+### 2026-11-15: Regras para economizar tokens nas sessões do Claude Code
+- **Decisão:** três regras no `CLAUDE.md`: no registro de decisões, buscar o assunto e ler só a entrada dele, não o arquivo inteiro; na depuração, parar depois de 3 tentativas sem resolver o mesmo erro, listar as hipóteses e perguntar ao Caio; nunca trazer log, saída de teste ou diff inteiros para a conversa, só o comando que falhou e o trecho relevante. Uma rotina de fim de sessão que sugere melhorias fica no [backlog](../roadmap/backlog.md), para testar depois do experimento de medição da Fase 0.
+- **Motivo:**
+  - A medição da sessão de 2026-11-14 mostrou que o custo vem do número de rodadas e do tamanho da conversa, não do tamanho das notas: o vault inteiro tem ~37 mil tokens, e cada rodada reenvia o contexto todo.
+  - O registro só cresce (~11 mil tokens hoje); ler a entrada certa custa uma fração disso.
+  - Loop de depuração e log despejado na conversa são onde o gasto dispara no trabalho com código: cada tentativa reenvia o contexto, e a saída fica nele até o fim da sessão. Dicas de quem usa agentes no dia a dia apontam o mesmo.
+  - A rotina de fim de sessão pode trazer melhorias além do custo, mas gasta tokens em toda sessão; vale testar só depois de medir o básico.
+- **Alternativas descartadas:** encurtar ou picar as notas para economizar (o ganho é pequeno, cortar o "porquê" leva a refazer decisões, e mais arquivos significam mais rodadas); limite de tentativas maior, como 5 (cada tentativa custa o contexto inteiro); adotar já a rotina de fim de sessão.
+- **Afeta:** `CLAUDE.md`, a introdução deste registro, [backlog](../roadmap/backlog.md)
 
 ### 2026-11-14: Subagentes do Claude Code para revisar regras e cuidar dos testes do core
 - **Decisão:** o Centavo tem dois subagentes versionados em `.claude/agents/`, adaptados do centavo-mobile: `revisor-de-regras` (aponta no diff violações das regras que pedem julgamento, só leitura, Sonnet) e `testador-do-core` (testes Vitest do `@centavo/core`, Sonnet). No código escrito pelo Caio, o testador só lista os casos que faltam e roda a suíte; ele escreve testes apenas no código escrito pelo Claude ou num PR próprio de cobertura (`test(core): ...`). Regras checáveis por máquina viram ESLint e CI na Fase 0. Um `.claude/settings.json` versionado nega a leitura de `.env*` e das fixtures brutas e o acesso aos bancos. O `auditor-de-design` fica para quando o web tiver design, e um `testador-da-api` (Japa) para depois da Fase 2. Detalhes em [uso de IA no desenvolvimento](../arquitetura/uso-de-ia-no-desenvolvimento.md).
