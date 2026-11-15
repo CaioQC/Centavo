@@ -15,6 +15,7 @@ Toda a especificação está no vault do Obsidian em `docs/`. Comece por [docs/i
 | Entender o produto e o que foi decidido | `docs/produto/decisoes-de-produto.md` |
 | Saber **por que** algo foi decidido | `docs/decisoes/registro.md`: não leia o arquivo inteiro; busque o assunto e leia só a entrada (`### data: título`) que aparecer |
 | Regras de arquitetura | `docs/adr/` (uma ADR por arquivo; índice em `docs/inicio.md`) |
+| Padrões de arquitetura e de projeto (quais usar e quais não) | `docs/arquitetura/padroes-de-arquitetura-e-projeto.md` |
 | Tabelas e campos | `docs/dominio/modelo-de-dados.md` |
 | Fluxos (conexão, reconciliação, pipeline, fatura, orçamento) | `docs/fluxos/` |
 | O que a Pluggy faz de verdade | `docs/pluggy/fatos-verificados.md` |
