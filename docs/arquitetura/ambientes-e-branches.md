@@ -44,4 +44,6 @@ Como o código sai da máquina de desenvolvimento e chega ao Centavo do dia a di
 
 **Por que a homologação usa uma cópia da produção:** o banco do Centavo é o único arquivo do passado (a Pluggy guarda ~12 meses). Testar uma versão nova, principalmente migration ou mudança na [reconciliação](../fluxos/reconciliacao.md), direto nele é arriscado. A cópia testa migrations contra dados reais sem risco e, a cada promoção, prova que o backup restaura.
 
+**Quando ela nasce:** a instância de homologação é montada no fim da Fase 2, antes da primeira release em produção, quando passa a existir um banco com dados reais para proteger. Até lá, a branch `homolog` existe, mas as promoções são testadas só pela CI ([roadmap](../roadmap/roadmap.md)).
+
 **O banco da homologação é descartável:** é recriado a cada promoção, não tem backup e nada dele volta para a produção.
