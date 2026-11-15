@@ -4,6 +4,15 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-15: Skills do Claude Code para links e para commit e PR
+- **Decisão:** duas skills versionadas em `.claude/skills/`: `checar-links` (um script Node que confere links quebrados, wikilinks, links para seção e caminhos entre crases) e `preparar-commit-e-pr` (roteiro de branch, arquivos do commit, mensagem, co-autoria, PRs separados e descrição do PR, no PC e na nuvem). A regra longa de co-autoria do `CLAUDE.md` vira uma linha que aponta para a skill, mantendo o essencial. O `revisor-de-regras` roda o script de links quando o diff mexe em notas. A `planejar-historia` fica para o primeiro `fase-N.md`; outras, quando um procedimento se repetir. Detalhes em [uso de IA no desenvolvimento](../arquitetura/uso-de-ia-no-desenvolvimento.md).
+- **Motivo:**
+  - A conferência de links foi reescrita várias vezes nas sessões de 2026-11-14 e 2026-11-15; como script fixo, dá sempre o mesmo resultado e não gasta tokens.
+  - Commit e PR têm muitas regras (co-autoria, PRs separados, modelo de PR, PC e nuvem) que só importam na hora de commitar; numa skill, o passo a passo é carregado só nessa hora, e o `CLAUDE.md`, que entra em toda rodada, fica mais curto.
+  - Specs (Spec Kit, Kiro) não foram adotadas: o vault já cumpre esse papel (ADRs, fluxos, `fase-N.md` com critérios, Issues), e uma pasta `specs/` duplicaria o conteúdo. A parte que faltava, um desenho curto de cada história, vai para a `planejar-historia`.
+- **Alternativas descartadas:** um framework de specs; tirar do `CLAUDE.md` toda a regra de co-autoria (se a skill não disparar, a regra se perderia); skills para tarefas que acontecem uma vez.
+- **Afeta:** [uso de IA no desenvolvimento](../arquitetura/uso-de-ia-no-desenvolvimento.md), [backlog](../roadmap/backlog.md), `.claude/skills/`, `.claude/agents/revisor-de-regras.md`, `CLAUDE.md`
+
 ### 2026-11-15: Padrões de arquitetura e de projeto nomeados numa nota
 - **Decisão:** a nota [padrões de arquitetura e de projeto](../arquitetura/padroes-de-arquitetura-e-projeto.md) dá nome aos padrões que o Centavo já usa (monólito modular, camadas, portas e adaptadores parcial, camada anticorrupção, fila, consumidor idempotente, injeção de dependência, Adapter, Active Record, DTO, Value Object). Quando o código chegar, adotam-se Strategy no tratamento de parcelas por banco, Chain of Responsibility nas camadas de categoria e portas explícitas (interfaces) para a Pluggy e o Ollama. Ficam de fora Singleton escrito à mão, Repository sobre o Lucid, microsserviços, CQRS e event sourcing.
 - **Motivo:** as escolhas já estavam espalhadas pelas ADRs sem nome; nomeá-las ajuda a manter o código coerente, a explicar o projeto no portfólio e a estudar os padrões mais cobrados no mercado. Os três padrões novos resolvem pontos concretos das ADRs 07 e 11 e dos testes com *fake*.

@@ -29,7 +29,7 @@ Leia antes de revisar, sem copiar o conteúdo para a resposta:
   - testes: `docs/arquitetura/testes.md`.
 
 ## Como obter o diff
-Use só comandos git de leitura: `git diff origin/develop...HEAD`, `git diff` (não commitado), `git diff --stat`, `git log origin/develop..HEAD`. Numa branch `hotfix/`, compare com `origin/main`. Use as referências `origin/...`: nas sessões na nuvem a `develop` local pode não existir, e no PC ela pode estar desatualizada. Se a referência não existir, rode `git fetch origin develop` (ou `main`), que só atualiza as referências remotas. **Nunca** rode comandos que mudem o repositório (commit, checkout, reset, push, stash, instalação de pacote).
+Use só comandos git de leitura: `git diff origin/develop...HEAD`, `git diff` (não commitado), `git diff --stat`, `git log origin/develop..HEAD`. Numa branch `hotfix/`, compare com `origin/main`. Use as referências `origin/...`: nas sessões na nuvem a `develop` local pode não existir, e no PC ela pode estar desatualizada. Se a referência não existir, rode `git fetch origin develop` (ou `main`), que só atualiza as referências remotas. **Nunca** rode comandos que mudem o repositório (commit, checkout, reset, push, stash, instalação de pacote). Se o diff altera arquivos `.md`, rode também `node .claude/skills/checar-links/checar-links.mjs` (só lê) e aponte os problemas como `baixa`.
 
 ## Dados reais: proibido
 O Claude Code é IA na nuvem. Nunca leia `.env*`, `**/fixtures/pluggy-raw/`, backups nem dumps, e nunca acesse um banco (`psql`, `pg_dump`, `docker exec`): os bancos desta máquina podem ter dados bancários reais. Revise só código, testes e fixtures anonimizadas.

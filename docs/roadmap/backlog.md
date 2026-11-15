@@ -23,6 +23,8 @@ Lista única de tarefas soltas do projeto, fora das fases do [roadmap](roadmap.m
   - [ ] Ao fim de cada uma dessas sessões, pedir ao Claude "explique meu uso" e comparar com uma sessão parecida sem agentes; acompanhar também a página de uso do plano no claude.ai.
   - [ ] Decidir com os números: manter como está, rodar o revisor só em PRs que mexem em `apps/api` ou `packages/core`, ou rever a regra de uma sessão por tarefa. Registrar a decisão no [registro de decisões](../decisoes/registro.md).
 
+- [ ] Ao escrever o primeiro `roadmap/fase-N.md`, criar a skill `planejar-historia`: história, critérios Dado / Quando / Então e um desenho curto (tabelas, rotas e fluxos que ela toca), no formato padrão ([uso de IA no desenvolvimento](../arquitetura/uso-de-ia-no-desenvolvimento.md)).
+
 ## Na Fase 2
 - [ ] Criar o `testador-da-api` (Japa, Sonnet), quando existirem o *fake* da Pluggy, as fixtures anonimizadas e o teste golden da [reconciliação](../fluxos/reconciliacao.md). Mesma regra de autoria do `testador-do-core` (modo casos no código do Caio); roda só no PC, porque precisa de Docker.
 
@@ -31,6 +33,7 @@ Lista única de tarefas soltas do projeto, fora das fases do [roadmap](roadmap.m
 
 ## Quando acontecer
 Tarefas sem fase, presas a um gatilho.
+- [ ] **Gatilho: um procedimento se repete pela terceira vez.** Avaliar uma skill para ele. Candidatas: `nova-migration`, `teste-de-regressao` (passo a passo do teste que falha antes da correção, também útil ao `testador-do-core`) e `promover-release`.
 - [ ] **Gatilho: uma pasta (`apps/api`, `apps/web` ou `packages/core`) passa a ter regras só dela.** Criar o `CLAUDE.md` da pasta e mover para lá essas regras, deixando no da raiz só o que vale para tudo. O Claude Code só carrega o `CLAUDE.md` de uma pasta quando trabalha nela ([uso de IA no desenvolvimento](../arquitetura/uso-de-ia-no-desenvolvimento.md)).
 - [ ] **Gatilho: uma tarefa na nuvem não coube numa sessão.** Testar se uma sessão nova na nuvem consegue continuar e dar push numa branch `claude/...` já existente. Se der, registrar a continuação na mesma branch e no mesmo PR rascunho; se não, a regra "cabe numa sessão" continua.
 - [ ] **Gatilho: o web ganha uma nota de design com tokens.** Criar o `auditor-de-design` (Haiku, só leitura), adaptado do centavo-mobile.
