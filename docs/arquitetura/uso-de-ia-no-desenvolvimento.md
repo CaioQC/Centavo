@@ -44,6 +44,8 @@ O contexto de uma sessão é limitado: quando enche, a conversa é compactada e 
 - **O tamanho de uma sessão é o de um PR:** Issue nova ou PR novo, sessão nova. Merge feito, a sessão daquele PR acabou. Com o trabalho do Caio e do Claude em PRs separados (acima), a mesma Issue pode ter mais de uma sessão.
 - **Planejar e implementar em sessões separadas:** planejamento (escopo, arquitetura, decisões, `fase-N.md`) numa sessão com modelo mais capaz, muitas vezes no celular; implementação numa sessão nova, a partir do que foi registrado no vault, com o modelo escolhido pela parte (abaixo).
 - **Desvio longo** (um bug que puxa uma depuração demorada): sessão própria para ele, e volta.
+- **Sessão derivada de outra:** quando uma sessão abre a seguinte (ex.: o planejamento abrindo a implementação), a nova nasce com **contexto novo**, não como cópia da conversa, e recebe um pedido que aponta o roadmap, as notas e a Issue. A sessão-mãe recebe um resumo curto a cada rodada da filha, o que é barato; mas cada vez que ela age (confere o trabalho, repassa uma mensagem) processa de novo o próprio contexto inteiro. Por isso, **converse direto com a sessão da tarefa**, não pela mãe, e arquive a mãe quando ela não tiver mais o que fazer.
+- **A próxima etapa sai de uma sessão nova,** aberta pelo Caio com um pedido curto, e não da sessão da etapa anterior. Assim não se forma uma cadeia em que cada sessão carrega a etapa anterior inteira.
 
 ### Sinais de que é hora de trocar
 - A conversa foi compactada: a partir daí a sessão já perdeu detalhes. Feche a tarefa atual e siga numa sessão nova.
