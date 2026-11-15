@@ -14,6 +14,7 @@ Sistema de gerenciamento financeiro pessoal integrado à API da **Pluggy (Open F
 ## Arquitetura
 - [Monorepo e papel de cada parte](arquitetura/monorepo.md)
 - [Stack tecnológica](arquitetura/stack.md)
+- [Padrões de arquitetura e de projeto](arquitetura/padroes-de-arquitetura-e-projeto.md)
 - [Segurança e operação](arquitetura/seguranca-e-operacao.md)
 - [Ambientes, branches e releases](arquitetura/ambientes-e-branches.md)
 - [Backup](arquitetura/backup.md)

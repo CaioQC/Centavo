@@ -4,6 +4,12 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-15: Padrões de arquitetura e de projeto nomeados numa nota
+- **Decisão:** a nota [padrões de arquitetura e de projeto](../arquitetura/padroes-de-arquitetura-e-projeto.md) dá nome aos padrões que o Centavo já usa (monólito modular, camadas, portas e adaptadores parcial, camada anticorrupção, fila, consumidor idempotente, injeção de dependência, Adapter, Active Record, DTO, Value Object). Quando o código chegar, adotam-se Strategy no tratamento de parcelas por banco, Chain of Responsibility nas camadas de categoria e portas explícitas (interfaces) para a Pluggy e o Ollama. Ficam de fora Singleton escrito à mão, Repository sobre o Lucid, microsserviços, CQRS e event sourcing.
+- **Motivo:** as escolhas já estavam espalhadas pelas ADRs sem nome; nomeá-las ajuda a manter o código coerente, a explicar o projeto no portfólio e a estudar os padrões mais cobrados no mercado. Os três padrões novos resolvem pontos concretos das ADRs 07 e 11 e dos testes com *fake*.
+- **Alternativas descartadas:** Repository sobre o Lucid (repete o Active Record); Singleton à mão (estado global, ruim para testes); `if` por banco no tratamento de parcelas.
+- **Afeta:** [padrões de arquitetura e de projeto](../arquitetura/padroes-de-arquitetura-e-projeto.md), [início](../inicio.md), `CLAUDE.md`
+
 ### 2026-11-15: Regras para economizar tokens nas sessões do Claude Code
 - **Decisão:** três regras no `CLAUDE.md`: no registro de decisões, buscar o assunto e ler só a entrada dele, não o arquivo inteiro; na depuração, parar depois de 3 tentativas sem resolver o mesmo erro, listar as hipóteses e perguntar ao Caio; nunca trazer log, saída de teste ou diff inteiros para a conversa, só o comando que falhou e o trecho relevante. Uma rotina de fim de sessão que sugere melhorias fica no [backlog](../roadmap/backlog.md), para testar depois do experimento de medição da Fase 0.
 - **Motivo:**
