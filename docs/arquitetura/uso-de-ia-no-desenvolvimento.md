@@ -88,4 +88,21 @@ Subagentes do Claude Code com uma tarefa só, contexto próprio e ferramentas li
 - **Limites são instruções, com uma rede por baixo:** o campo `tools` libera ferramentas inteiras (o testador tem `Write`; o revisor, `Bash`), e o "só `*.test.ts`" ou "só git de leitura" está no prompt. Por baixo, o `.claude/settings.json` versionado nega a leitura de `.env*` e de `**/fixtures/pluggy-raw/**` e os comandos `psql`, `pg_dump`, `pg_restore` e `docker exec`, porque nesta máquina há dado bancário real no disco e nos bancos. É uma rede, não um muro: o Bash tem como contornar. A regra continua sendo a da seção "Dados bancários reais nunca vão para o Claude".
 - **Custo:** cada agente começa do zero e consome o mesmo limite de uso do plano. Por isso, uma vez por PR, não a cada edição.
 - **Co-autoria:** apontamentos do revisor e casos listados pelo testador não levam a linha de co-autoria; testes escritos no modo escrita levam.
+- **Skills:** o revisor roda o script da skill `checar-links` quando o diff mexe em notas (seção "Skills", abaixo).
 - **Próximos:** `testador-da-api` (Japa) depois da Fase 2, quando existirem o *fake* da Pluggy, as fixtures e o teste golden; ele só roda no PC, porque precisa de Docker. `auditor-de-design` (Haiku) quando o web tiver uma nota de design com tokens. Ambos no [backlog](../roadmap/backlog.md).
+
+## Skills
+Procedimentos que se repetem, em `.claude/skills/`, versionados como código. Só o nome e a descrição de cada skill ficam no contexto; o conteúdo é carregado quando ela é usada. A diferença para o resto:
+- **`CLAUDE.md`:** regras curtas que valem sempre; entra em toda rodada.
+- **Skill:** o passo a passo de um procedimento; roda na própria conversa, quando o assunto aparece.
+- **Agente:** tarefa pesada e isolada, com contexto próprio; devolve um resumo.
+
+| Skill | O que faz | Quando |
+|---|---|---|
+| `checar-links` | Roda um script Node que confere links quebrados, wikilinks, links para seção e caminhos entre crases | Depois de mexer em notas; antes de commitar `.md` |
+| `preparar-commit-e-pr` | Roteiro de branch, arquivos do commit, mensagem, co-autoria, PRs separados e descrição do PR, no PC e na nuvem | Ao commitar, propor mensagem, dar push ou abrir PR |
+
+- **A descrição decide quando a skill é usada:** vaga, e ela não dispara; ampla demais, e dispara na hora errada.
+- **Apontam para as notas, não as copiam;** a `preparar-commit-e-pr` resume as regras de [convenções](convencoes-de-git.md) e deste documento, que continuam sendo a referência.
+- **Script no lugar de raciocínio:** o que é mecânico (conferir links) vira script, que dá sempre o mesmo resultado e não gasta tokens escrevendo código.
+- **Próximas** no [backlog](../roadmap/backlog.md): `planejar-historia` no começo da Fase 0; `nova-migration`, `teste-de-regressao` e `promover-release` quando houver código e releases.
