@@ -21,7 +21,7 @@ Toda a especificação está no vault do Obsidian em `docs/`. Comece por [docs/i
 | O que ainda falta confirmar | `docs/pluggy/pendencias.md` |
 | Próximos passos | `docs/roadmap/roadmap.md` (fases), `docs/roadmap/fase-N.md` (histórias e critérios de aceite) e as Issues do GitHub (status das tarefas, uma Milestone por fase; `docs/roadmap/backlog.md` até a migração) |
 | Nomes de branch, commits e PRs | `docs/arquitetura/convencoes-de-git.md` |
-| Uso do Claude no desenvolvimento (co-autoria, revisão, dados) | `docs/arquitetura/uso-de-ia-no-desenvolvimento.md` |
+| Uso do Claude no desenvolvimento (co-autoria, revisão, dados, sessões) | `docs/arquitetura/uso-de-ia-no-desenvolvimento.md` |
 
 Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
 
@@ -34,6 +34,7 @@ Leia só as notas do assunto da tarefa; não é preciso ler o vault inteiro.
 - **Co-autoria do Claude:** commit em que o Claude escreveu parte relevante do diff termina com `Co-Authored-By: Claude <noreply@anthropic.com>` (sem nome de modelo); se ele só revisou, explicou ou redigiu a mensagem, sem a linha. No PC, proponha a linha e diga por quê; o Caio decide. PR com commits co-autorados termina a descrição com essa linha. Trabalho relevante do Caio e do Claude vai em PRs separados (mesmo na mesma Issue); PR misto inevitável explica a divisão na descrição. Nenhum PR leva o rodapé "Generated with Claude Code" nem outra atribuição, mesmo que a ferramenta sugira (a label `claude` cumpre o papel).
 - **Dados bancários reais nunca vêm para a conversa:** JSON bruto da Pluggy, extratos, `.env` e backups não são colados nem lidos numa sessão do Claude; use as fixtures anonimizadas.
 - **Quando o Claude é o agente:** PRs pequenos, um assunto por PR, com as mesmas exigências de teste do código do Caio. Política completa em `docs/arquitetura/uso-de-ia-no-desenvolvimento.md`.
+- **Uma sessão por tarefa:** ao mudar de tarefa, depois de um merge ou depois que a conversa for compactada, sugira ao Caio continuar numa sessão nova. Ao encerrar no meio do trabalho, deixe na Issue o que foi feito, o que falta, onde parou e o nome da branch (no PC, mostre o texto e publique só com o OK do Caio). Na nuvem, a tarefa cabe numa sessão; se não couber, divida em PRs menores. Ao sugerir o modelo de uma sessão ou agente, escolha pela parte do código: regra de domínio escrita pelo Claude pede o modelo maior. Ao propor outra sessão, use contexto novo, não cópia da conversa. Se o Caio pedir para repassar algo a uma sessão derivada, sugira falar direto com ela, que é mais barato. A próxima etapa sai de uma sessão nova, não desta. Detalhes em `docs/arquitetura/uso-de-ia-no-desenvolvimento.md`.
 - Não decida sozinho o que é escolha de produto: pergunte. Ao propor algo que contradiz uma ADR ou o registro de decisões, diga qual e por quê.
 
 ## Regras do vault (`docs/`)
