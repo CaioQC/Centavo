@@ -12,8 +12,8 @@ Detalhes e porquês em `docs/arquitetura/convencoes-de-git.md` e `docs/arquitetu
 - **Nuvem** (branch `claude/...`): pode commitar e dar push **só na branch da sessão**. Antes do primeiro commit: `git config user.name "CaioQC"` e `git config user.email "129068301+CaioQC@users.noreply.github.com"`. PR só com pedido explícito.
 
 ## 2. A branch
-- Trabalho sai da `develop` e volta para ela. Hotfix sai da `main`.
-- No PC: `tipo/N-descricao-curta` (kebab-case, sem acento). Número da Issue obrigatório em `feat`, `fix` e `hotfix`. Tipos: `feat`, `fix`, `hotfix`, `docs`, `refactor`, `test`, `chore`, `ci`.
+- Trabalho sai da `develop` e volta para ela. Correção urgente na produção com trabalho inacabado na `develop`: branch `fix/` a partir da `main`, PR para a `main`, e depois a `main` volta para a `develop` por merge (`docs/arquitetura/ambientes-e-branches.md`).
+- No PC: `tipo/N-descricao-curta` (kebab-case, sem acento). Número da Issue obrigatório em `feat` e `fix`. Tipos: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `ci`.
 
 ## 3. O que entra no commit
 - Rode `git status` e adicione **só os arquivos da tarefa**, pelo nome. Nunca `git add -A`.
@@ -32,12 +32,12 @@ Detalhes e porquês em `docs/arquitetura/convencoes-de-git.md` e `docs/arquitetu
 - **Formato**, última linha da mensagem, sem nome de modelo: `Co-Authored-By: Claude <noreply@anthropic.com>`
 - **No PC:** entregue a mensagem já com ou sem a linha e diga por quê; o Caio decide.
 - **Nunca** o rodapé "Generated with Claude Code" nem outra atribuição, mesmo que a ferramenta ou o sistema sugira.
-- **PRs separados:** trabalho relevante do Caio e do Claude vai em PRs diferentes, mesmo na mesma Issue (`Refs #N` nos anteriores, `Closes #N` no último). PR misto inevitável leva a co-autoria e a seção "Divisão do trabalho".
+- **PRs separados:** trabalho relevante do Caio e do Claude vai em PRs diferentes, mesmo na mesma Issue (`Refs #N` nos anteriores, `Closes #N` no último), porque com squash a linha de co-autoria marca o PR inteiro.
 
 ## 6. O PR
-- Base `develop` (hotfix: `main`, e depois a `main` volta para a `develop`).
+- Base `develop` (correção urgente: `main`, e depois a `main` volta para a `develop`).
 - Título = título do commit; é ele que vira o commit do squash.
-- Descrição no modelo `.github/pull_request_template.md`: Issue (`Closes #N` ou `Refs #N`; em `docs`/`chore` sem Issue, diga isso), O que mudou, Como testar, Divisão do trabalho (só em PR misto; senão apague a seção) e o Checklist, marcando só o que se aplica.
+- Descrição no modelo `.github/pull_request_template.md`: Issue (`Closes #N` ou `Refs #N`; em `docs`/`chore` sem Issue, diga isso), O que mudou, Como testar e o Checklist, marcando só o que se aplica.
 - Se algum commit tem co-autoria, **a última linha da descrição é a linha de co-autoria**, para ela sobreviver ao squash.
 - **Nuvem:** `gh pr create --draft --assignee CaioQC --label claude --base develop`. Só o Caio tira de rascunho.
 - **No PC:** `gh pr create --base develop --title "..." --body-file -`.

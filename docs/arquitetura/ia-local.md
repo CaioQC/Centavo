@@ -1,6 +1,6 @@
 # IA local (Ollama)
 
-Uma IA rodando no próprio PC (Ollama + modelo Qwen) sugere categorias e regras, responde perguntas sobre os gastos e resume o mês. Entra na [Fase 3](../roadmap/roadmap.md); o resumo do mês, na Fase 4, junto com o orçamento. O porquê está no [registro de decisões](../decisoes/registro.md).
+Uma IA rodando no próprio PC (Ollama + modelo Qwen) sugere categorias e regras, responde perguntas sobre os gastos e resume o mês. Fica para depois do MVP, na [Fase 7](../roadmap/roadmap.md): nenhuma das funções centrais depende dela. O porquê está no [registro de decisões](../decisoes/registro.md).
 
 ## Regras
 - **Só local:** dado bancário real nunca vai para IA na nuvem, nem como alternativa quando o Ollama estiver fora do ar.
@@ -14,11 +14,11 @@ Uma IA rodando no próprio PC (Ollama + modelo Qwen) sugere categorias e regras,
 1. **Sugestão de categoria** para transações que ficaram "Sem categoria" no [pipeline](../fluxos/pipeline-de-transacao.md). O modelo recebe descrição, valor, conta, a lista de categorias e exemplos já categorizados à mão, e responde em JSON estruturado. Resposta fora da lista de categorias é descartada.
 2. **Sugestão de regra:** depois de várias recategorizações manuais parecidas, propõe uma regra (ex.: descrição contém `UBER *TRIP` → Transporte). Se o usuário aceita, vira uma regra comum, determinística.
 3. **Perguntas em linguagem natural** ("quanto gastei com delivery em outubro?"): *tool calling* sobre consultas prontas da API, nunca SQL livre. Assim as regras de negócio valem também aqui, como transferências internas fora da conta ([ADR 08](../adr/adr-08-transferencias-internas.md)).
-4. **Resumo do mês** em texto, narrando números já calculados: gastos por categoria e situação do [orçamento](../fluxos/orcamento-do-mes.md). Fica para a Fase 4.
+4. **Resumo do mês** em texto, narrando números já calculados: gastos por categoria e situação do [orçamento](../fluxos/orcamento-do-mes.md).
 
 ## Modelo e hardware
 - PC com **RX 9060 XT 16 GB**. Começar por um modelo de 8–9B (ex.: Qwen 3.5 9B), que cabe com folga; os de ~27B em Q4 ficam no limite dos 16 GB.
-- No Windows, o suporte do Ollama a placas RDNA 4 via ROCm é incerto; o caminho indicado é o backend **Vulkan**. A confirmar no PC ([backlog](../roadmap/backlog.md)). Fontes: [docs de GPU do Ollama](https://docs.ollama.com/gpu.md), [Phoronix sobre o Vulkan no Ollama](https://www.phoronix.com/news/ollama-Experimental-Vulkan).
+- No Windows, o suporte do Ollama a placas RDNA 4 via ROCm é incerto; o caminho indicado é o backend **Vulkan**. A confirmar no PC quando a IA entrar: ver em `ollama ps` se o modelo roda na GPU e anotar a velocidade de um Qwen de ~9B e de um de ~27B. Fontes: [docs de GPU do Ollama](https://docs.ollama.com/gpu.md), [Phoronix sobre o Vulkan no Ollama](https://www.phoronix.com/news/ollama-Experimental-Vulkan).
 - Endereço e nome do modelo vêm do `.env` da API, para trocar de modelo sem mudar código.
 
 ## Testes

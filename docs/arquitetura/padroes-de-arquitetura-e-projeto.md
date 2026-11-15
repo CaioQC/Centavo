@@ -25,12 +25,7 @@ Os padrões que o Centavo usa, onde aparecem e por quê, e os que ficam de fora.
 | **Factory** | As *factories* do Lucid para gerar dados de teste |
 | **Test double** | O *fake* da Pluggy e do Ollama nos testes ([testes](testes.md)) |
 
-**A adotar quando o código chegar:**
-| Padrão | Onde | Por quê |
-|---|---|---|
-| **Strategy** | Tratamento de parcelas por banco: um banco lança parcela a parcela, outro tudo de uma vez ([ADR 11](../adr/adr-11-orcamento-cartao-parcelado.md)) | Uma estratégia por comportamento, escolhida pelo banco, em vez de `if` por banco espalhado pelo código |
-| **Chain of Responsibility** | Camadas de categoria: manual, depois regra, depois o mapa da Pluggy ([ADR 07](../adr/adr-07-categorizacao-em-camadas.md)) | Cada camada tenta categorizar e passa adiante; a ordem fica explícita e cada camada é testada sozinha |
-| **Portas explícitas** | Uma interface para a Pluggy e outra para o Ollama, implementadas pelo adaptador real e pelo *fake* | O *fake* dos testes fica garantido pelo tipo a se comportar como o real |
+Outros padrões (ex.: uma estratégia por banco no tratamento de parcelas da [ADR 11](../adr/adr-11-orcamento-cartao-parcelado.md)) se decidem quando o código pedir, depois das [pendências](../pluggy/pendencias.md).
 
 ## Fora do Centavo
 - **Singleton escrito à mão:** estado global, difícil de substituir nos testes. O contêiner faz o mesmo papel.

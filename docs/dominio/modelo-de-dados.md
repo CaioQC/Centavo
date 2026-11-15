@@ -24,7 +24,6 @@ Tabelas com IDs UUID; valores monetários em centavos ([ADR 01](../adr/adr-01-va
 - `password_hash`: String
 - `totp_secret`: String (criptografado com a chave da aplicação, nulável até ativar)
 - `totp_enabled`: Boolean
-- `recovery_codes`: hashes dos códigos de recuperação
 
 ### `items` (cada conexão do Meu Pluggy)
 - `id`: UUID (PK)

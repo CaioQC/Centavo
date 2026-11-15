@@ -1,6 +1,6 @@
 # Monorepo e papel de cada parte
 
-O projeto adota um **monorepo único** (sem Git Submodules) com **pnpm workspaces** e **Turborepo** para orquestração de compilação, cache e scripts.
+O projeto adota um **monorepo único** (sem Git Submodules) com **pnpm workspaces**. O Turborepo (cache e execução paralela) entra só quando o build ou a CI ficarem lentos.
 
 ```text
 centavo/
@@ -9,13 +9,12 @@ centavo/
 │   │                          # cliente Pluggy, webhooks, jobs BullMQ
 │   └── web/                   # Dashboard Web (Vite + React, SPA)
 ├── packages/
-│   ├── core/                  # @centavo/core: domínio puro e isomórfico (sem I/O, sem segredos)
-│   ├── tsconfig/              # @centavo/tsconfig: configurações TypeScript base
-│   └── eslint-config/         # @centavo/eslint-config: padronização de código
+│   └── core/                  # @centavo/core: domínio puro e isomórfico (sem I/O, sem segredos)
 ├── docs/                      # Este vault do Obsidian
 ├── docker-compose.yml         # PostgreSQL + Redis para desenvolvimento
 ├── pnpm-workspace.yaml        # Mapeamento dos pacotes do monorepo
-├── turbo.json                 # Pipelines de build, dev, lint e test do Turborepo
+├── tsconfig.base.json         # Configuração TypeScript base, estendida por cada pacote
+├── eslint.config.js           # ESLint de todo o monorepo, com regras por pacote
 └── package.json               # Dependências de raiz e scripts globais
 ```
 

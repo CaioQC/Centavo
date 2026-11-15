@@ -5,8 +5,8 @@ Stack enxuta: só três ferramentas (Vitest, Japa e Docker Compose), concentrada
 - **`@centavo/core` (Vitest):** conversão de centavos, `budget_month` de parcelas, virada de mês no fuso local, impressão digital, detecção de transferências e assinaturas, projeção de fatura. Data e hora congeladas com o **relógio falso** do Vitest (`vi.setSystemTime`), para os testes de fuso e virada de mês não dependerem do dia em que rodam.
 - **`apps/api` (Japa):** testes de integração com PostgreSQL e Redis reais, pelo mesmo Docker Compose do desenvolvimento, num banco separado só para testes. A Pluggy é substituída por um *fake* alimentado com **fixtures gravadas dos seus próprios itens** (JSON bruto, com dados pessoais anonimizados) e do sandbox da Pluggy. O JSON bruto, antes de anonimizar, fica fora do git. O Ollama também é substituído por um *fake* ([IA local](ia-local.md)).
 - **Teste "golden" da reconciliação (Fase 2):** uma fixture entra, a [reconciliação](../fluxos/reconciliacao.md) roda e o estado do banco é comparado com um resultado esperado guardado em arquivo; rodar duas vezes dá o mesmo resultado.
-- **`apps/web`:** sem teste automatizado no começo. Toda regra que importa mora no `core`; o `web` só mostra dados e é testado à mão na homologação ([ambientes, branches e releases](ambientes-e-branches.md)).
-- **CI:** lint, typecheck, testes e título do PR em todo push. **CI verde é obrigatória** para o merge na `develop`, na `homolog` e na `main`.
+- **`apps/web`:** sem teste automatizado no começo. Toda regra que importa mora no `core`; o `web` só mostra dados e é testado à mão.
+- **CI:** lint, typecheck e testes em todo push. **CI verde é obrigatória** para o merge na `develop` e na `main`.
 - **Segredos:** *push protection* de segredos do GitHub ligado no repositório.
 - **Onde rodam:** os testes do `core` rodam em qualquer lugar; os da `api` precisam de Docker, então rodam no PC e na CI (nas sessões do Claude Code na nuvem o Docker não está ativo).
 
@@ -30,7 +30,7 @@ Stack enxuta: só três ferramentas (Vitest, Japa e Docker Compose), concentrada
 ## Teste de regressão
 Todo bug corrigido ganha um teste que impede que ele volte numa release futura.
 1. **O teste vem antes da correção e precisa falhar sem ela.** Primeiro o teste que reproduz o bug, visto falhando; depois a correção, com o teste passando. Isso prova que o teste pega o bug.
-2. **Teste e correção vão no mesmo PR,** em `fix/` e em `hotfix/`. No hotfix, a volta da `main` para a `develop` leva o teste junto ([ambientes, branches e releases](ambientes-e-branches.md)).
+2. **Teste e correção vão no mesmo PR** (`fix/`, ver [ambientes, branches e releases](ambientes-e-branches.md)).
 3. **Na camada mais baixa que reproduz o bug:** regra pura no `core` (Vitest); banco ou reconciliação na `api` (Japa); ponta a ponta só quando não houver outro jeito, porque é o mais lento e o mais frágil.
 4. **O teste cita a Issue,** por exemplo `it('não duplica parcela recriada (#42)')`.
 5. **Bug causado por dado real da Pluggy:** o caso anonimizado entra nas fixtures, e o *fake* da Pluggy passa a reproduzi-lo.
@@ -42,4 +42,4 @@ Ficaram fora para manter a stack enxuta. Voltam quando um tipo de bug se repetir
 - **Erros de conta com casos estranhos:** testes baseados em propriedades com `fast-check` no `core`.
 - **Fake da Pluggy desatualizado:** teste semanal de contrato contra o sandbox. Até lá, aparece como bug e vira teste de regressão.
 - **Qualidade dos testes do `core`:** testes de mutação (Stryker) e cobertura mínima.
-- **Também:** Testcontainers no lugar do Docker Compose; gitleaks na CI; verificação mensal automática da restauração do backup (hoje ela é testada a cada promoção, ver [backup](backup.md)).
+- **Também:** Testcontainers no lugar do Docker Compose; gitleaks na CI; verificação mensal automática da restauração do backup (hoje ela é testada em cada ensaio de release, ver [backup](backup.md)).
