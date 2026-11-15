@@ -34,6 +34,7 @@ Tarefas sem fase, presas a um gatilho.
 - [ ] **Gatilho: uma pasta (`apps/api`, `apps/web` ou `packages/core`) passa a ter regras só dela.** Criar o `CLAUDE.md` da pasta e mover para lá essas regras, deixando no da raiz só o que vale para tudo. O Claude Code só carrega o `CLAUDE.md` de uma pasta quando trabalha nela ([uso de IA no desenvolvimento](../arquitetura/uso-de-ia-no-desenvolvimento.md)).
 - [ ] **Gatilho: uma tarefa na nuvem não coube numa sessão.** Testar se uma sessão nova na nuvem consegue continuar e dar push numa branch `claude/...` já existente. Se der, registrar a continuação na mesma branch e no mesmo PR rascunho; se não, a regra "cabe numa sessão" continua.
 - [ ] **Gatilho: o web ganha uma nota de design com tokens.** Criar o `auditor-de-design` (Haiku, só leitura), adaptado do centavo-mobile.
+- [ ] **Gatilho: terminou o experimento de medição de custo da Fase 0.** Testar uma rotina de fim de sessão em que o Claude sugere como melhorar a sessão que acabou (regra, agente, habilidade ou forma de pedir). Medir o custo dela e o que ela traz além da economia de tokens; manter só se compensar ([uso de IA no desenvolvimento](../arquitetura/uso-de-ia-no-desenvolvimento.md)).
 
 ## Documentação
 - [ ] **Diagramas em Mermaid** (adiado por escolha; abordagem já decidida, ver registro em 2026-11-04):
