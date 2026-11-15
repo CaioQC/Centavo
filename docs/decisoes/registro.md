@@ -4,6 +4,12 @@ Diário das decisões do projeto: o que foi decidido, **por quê** e o que foi d
 
 ---
 
+### 2026-11-15: Backup e homologação saem da Fase 0
+- **Decisão:** o script de backup e a instância de homologação com restauração do backup deixam a Fase 0 e passam para o fim da Fase 2, antes da primeira release em produção. A Fase 0 fica com o monorepo, o Docker Compose, a CI e os testes rodando. Até a instância existir, as promoções para a `homolog` são testadas só pela CI. A retenção do backup fica mais simples: os últimos 30 diários e os 3 feitos antes de release, no lugar de diários, semanais e mensais.
+- **Motivo:** a homologação serve para testar migrations e mudanças na reconciliação contra uma cópia dos dados reais; antes da Fase 2 não há dado real nem produção para proteger. O mesmo vale para o backup: não há o que copiar antes dos dados reais. Montar os dois na Fase 0 era trabalho sem uso, parte de uma revisão contra excesso de processo antes de existir código. Na retenção, cada cópia tem poucos MB, e 30 diários cobrem um erro percebido semanas depois sem a lógica de semanais e mensais.
+- **Alternativas descartadas:** manter na Fase 0 (instância e script sem nada para homologar ou copiar); manter a retenção em diários, semanais e mensais (mais lógica para pouco ganho); eliminar a homologação (o banco do Centavo é o único histórico, porque a Pluggy guarda ~12 meses, e migration errada nele é irreversível).
+- **Afeta:** [roadmap](../roadmap/roadmap.md), [ambientes, branches e releases](../arquitetura/ambientes-e-branches.md), [backup](../arquitetura/backup.md)
+
 ### 2026-11-15: Skills do Claude Code para links e para commit e PR
 - **Decisão:** duas skills versionadas em `.claude/skills/`: `checar-links` (um script Node que confere links quebrados, wikilinks, links para seção e caminhos entre crases) e `preparar-commit-e-pr` (roteiro de branch, arquivos do commit, mensagem, co-autoria, PRs separados e descrição do PR, no PC e na nuvem). A regra longa de co-autoria do `CLAUDE.md` vira uma linha que aponta para a skill, mantendo o essencial. O `revisor-de-regras` roda o script de links quando o diff mexe em notas. A `planejar-historia` fica para o primeiro `fase-N.md`; outras, quando um procedimento se repetir. Detalhes em [uso de IA no desenvolvimento](../arquitetura/uso-de-ia-no-desenvolvimento.md).
 - **Motivo:**
